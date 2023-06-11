@@ -113,7 +113,7 @@ $ brownie bake nft
 ```bash
 $ brownie networks list
 ``` 
-(provide screenshots) checked__/
+![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
 // am here
 #### 3.3.4 Contracts
@@ -149,13 +149,14 @@ $ brownie networks list
     Create a wallet as described.
 
     - After setting up metamask you will need to create two additional accounts, export all three private keys and copy them somewhere safe we will be needing them later, alot in the project depends on that mostly our scripts for testing and interacting with alfajores testnet. (provide a video a gif or a link on doing that).
-    [provide gif](https://link/here)checked__/
+    ![additional_account](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/additional_account.gif)
+
+    ![export_private_key](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/export_private_key.gif)
 
     - Connect Metamask to Alfajores
     - Click on "Ethereum Mainnet" in your MetaMask extension, then click on "Add Network".
     - You should see "Add a network manually" under the list of provided networks, click on it and.
     - Enter the data provided in this [Celo documentation](https://docs.celo.org/getting-started/wallets/using-metamask-with-celo/manual-setup). Make sure to choose the data for the Alfajores Testnet.
-    [provide gif](https://link/here)checked__/
 
     - You would need to fund your newly created accounts with Celo Alfajores Faucets.
     Go to the Alfajores testnet faucet [here](https://faucet.celo.org/alfajores).
@@ -194,7 +195,7 @@ python setup.py install
 brownie
 ```
 
-(provide a video a gif or a link of the byproccess).checked__/
+![brownie](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/brownie.png).
 
 #### 4.1.2 Installing Ganche-cli
 
@@ -223,7 +224,7 @@ brownie pm install OpenZeppelin/openzeppelin-contracts@4.8.2
 ```bash
 brownie pm list
 ```
-(provide a video a gif or a link of the byproccess).checked__/
+![pm-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/pm-list.png)
 
 #### 4.1.5 Adding Alfajores Testnet To Brownie
 
@@ -240,7 +241,7 @@ brownie networks add Alfajores alfajores host=https://alfajores-forno.celo-testn
 ```bash
 brownie networks list
 ```
-(provide a video a gif or a link of the byproccess).checked__/
+![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
 
 ### 4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract.
@@ -260,11 +261,11 @@ mkdir project_dir_name
 cd project_dir_name
 brownie init
 ```
-(provide a video a gif or a link of the byproccess).checked__/
+![init](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/init.png)
 
 - You should have this expected project structure.
 
-(provide a video a gif or a link of the byproccess).checked__/
+![project-structure](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/project-structure.png)
 
 ##### 4.2.0.2 Creating The Smart Contract
 
@@ -1089,7 +1090,9 @@ def main():
 ```bash
 ganache-cli
 ```
-(provide screenshots)checked__/
+![ganache-1](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/ganache-1.png)
+
+![ganache-2](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/ganache-2.png)
 
 - Open a separate terminal and issue the commands below
 
@@ -1100,7 +1103,7 @@ brownie compile
 brownie run deploy.py
 ```
 - do copy your deployed contract address somewhere safe we would need it to get our deployed contract on the chain.
-(provide screenshots)checked__/
+![deploy-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/deploy-local.png)
 
 - We could now make calls and interact with our deployed contract. Access the console (brownie console is a lot similar to the python console) by issuing this command 
 
@@ -1114,7 +1117,7 @@ brownie console
 ```bash
 funds = FundRaiser.at('contract_address')
 ```
-(provide screenshots) checked__/
+![console-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/console-local-1.png)
 
 
 
@@ -1131,7 +1134,7 @@ funds.safeMint('my/new/token/uri', {'from': accounts[1], 'gas_price':100000000} 
 ```bash
 funds._TotalDonations()
 ```
-(provide screenshots) checked__/
+![donate-mint-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/donate-mint-local.png)
 
 
 ```bash
@@ -1145,7 +1148,7 @@ funds.NewPost("Updated the contract for a better prefrence", "updated the.....",
 ```bash
 funds.ReturnPosts()
 ```
-(provide screenshots) checked__/
+![newpost-posts-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/newpost-posts-local.png)
 
 - Eth-brownie utilizes pytest and hypothesis for unit and property-based testing providing a robust framework for testing your contracts. Every test scripts created should be placed in the `./tests` directory and for naming conventions, test files are to be prefixed with test_ or suffixed with _test while being named. One of the reasons one would want to automate testing a Smart Contract is, instead of making several calls from the console to manual test a contract it will be preferable to automate the process by writing a script that would make several calls to the contract and making assertions to those calls, saving a lot of time and going a long way by using just a script. Brownie provides pytest Fixtures for easy testing and interacting with our project.   
 
@@ -1233,7 +1236,7 @@ def test_nftfunds_Blog_functions(Funds, accounts):
 ```bash
 brownie test tests/test_OnGanache.py
 ```
-(provide screenshots) checked__/
+![test-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-local.png)
 
 
 
@@ -1243,14 +1246,14 @@ brownie test tests/test_OnGanache.py
 brownie run deploy.py --network alfajores
 ```
 - do copy your deployed contract address we would need it to get our deployed contract on the chain.
-(provide screenshots) checked__/
+![deploy-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/deploy-alfajores.png)
 
 - access the console.
 
 ```bash
 brownie console --network alfajores
 ```
-(provide screenshots)checked__/
+![console-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/console-alfajores.png)
 
 - You could get access to an instance of your deployed contract on alfajores by interacting with the console....
 
@@ -1277,7 +1280,7 @@ funds.safeMint('my/new/token/uri', {'from': acc1, 'gas_price':10000000000} )
 ```bash
 funds._TotalDonations()
 ```
-(provide screenshots) checked__/
+![donate-mint-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/donate-mint-alfajores.png)
 
 
 ```bash
@@ -1291,7 +1294,7 @@ funds.NewPost("Updated the contract for a better prefrence", "updated the.....",
 ```bash
 funds.ReturnPosts()
 ```
-(provide screenshots)checked__/
+![newpost-posts-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/newpost-posts-alfajores.png)
 
 - Now Create a test_OnAlfajores.py file in the `./tests` directory and populate it with the code below or you could create your own test.
 
@@ -1374,7 +1377,7 @@ def test_nftfunds_Blog_functions(Funds):
 ```bash
 brownie test tests/test_OnAlfajores.py --network alfajores
 ```
-(provide screenshots)checked__/
+![test-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-alfajores.png)
 
 
 ### 4.3 Generating Unique Images Using An Art Engine..
