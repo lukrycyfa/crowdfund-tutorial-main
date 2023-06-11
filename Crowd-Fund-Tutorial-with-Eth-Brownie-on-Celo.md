@@ -1493,6 +1493,8 @@ brownie run --network alfajores useFundsAlfajores.py returnPosts_Pst
 brownie run --network alfajores useFundsAlfajores.py like_unlikePst
 ```
 ![alfajores-script-mp4](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/alfajores-script-mp4.mp4)
+<video src="https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/alfajores-script-mp4.mp4" controls="controls" style="max-width: 730px;">
+</video>
 
 
 - For donations and minting on ganache
