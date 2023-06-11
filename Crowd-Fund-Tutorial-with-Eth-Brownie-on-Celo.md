@@ -1492,7 +1492,7 @@ brownie run --network alfajores useFundsAlfajores.py returnPosts_Pst
 ```bash
 brownie run --network alfajores useFundsAlfajores.py like_unlikePst
 ```
-<iframe className="mx-auto" width="100%" height="515"  src="https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/alfajores-script-mp4.mp4" title="Testing Interactive Script On Alfajores" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/alfajores-script-mp4.mp4
 
 
 - For donations and minting on ganache
@@ -1507,7 +1507,7 @@ brownie run  useFundsLocal.py returnPosts_Pst
 ```bash
 brownie run  useFundsLocal.py like_unlikePst
 ```
-<iframe className="mx-auto" width="100%" height="515"  src="https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/local-script-mp4.mp4" title="Testing Interactive Script On Ganache" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/local-script-mp4.mp4
 
 - !and here we have it you could now develop, test and deploy a smart contract on alfajores using eth-brownie. 
 
