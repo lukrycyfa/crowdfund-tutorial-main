@@ -106,8 +106,6 @@ $ brownie bake nft
 
 - Having access to local accounts to interact with a local-chain and make transactions in Eth-brownie, is via Accounts a list-like object that contains Account objects. These accounts can be accessed on the console while making transactions or imported in a .py file to be used in the script.
 
-(provide screenshots)
-
 - Interacting with a Testnet is feasible with brownie, already having pre-configured testnets on it's list of networks or manually adding a network to brownie. You could access the list of networks configured on brownie using this command. 
 
 ```bash
@@ -238,6 +236,8 @@ brownie pm list
 ```bash
 brownie networks add Alfajores alfajores host=https://alfajores-forno.celo-testnet.org chainid=44787 explorer=https://alfajores-blockscout.celo-testnet.org
 ```
+![add-network](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/add-network.png)
+
 ```bash
 brownie networks list
 ```
@@ -1083,7 +1083,7 @@ def main():
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/deploy.py).
 
-// am here
+
 ##### 4.2.2.1 Next we deploy and test the contract on ganache local network 
 - Open a new terminal for the ganache network and issue this command
 
@@ -1472,8 +1472,8 @@ export SECRET_API_KEY= your api secret key
 ```
 - Then visit the Tutorials project repo [here](https://github.com/lukrycyfa/crowdfund-tutorial-project) and download or copy these three files in the ./script directory `useFundsAlfajores.py`, `useFundsLocal.py` and `utility.py` and make copy's in the scripts directory of your project.
 
-    - [Alfajores script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/useFundsAlfajores.py).
-    - [Ganache script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/useFundsLocal.py).
+    - [Alfajores interactive script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/useFundsAlfajores.py).
+    - [Ganache interactive script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/useFundsLocal.py).
     - [Utility script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/utility.py).
 
 - What’s happing in our scripts is there are three created functions to make calls to related functionalities in our crowdfund contract, in each script that interacts with their respective networks and the utility script carries functions that sends data to the IPFS and collect inputs from the terminal. All you have to do is to call the script alongside a function e.g.
