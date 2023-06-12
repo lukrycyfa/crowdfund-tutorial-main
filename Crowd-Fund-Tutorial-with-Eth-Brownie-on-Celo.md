@@ -146,9 +146,9 @@ $ brownie networks list
     Create a wallet as described.
 
     - After setting up metamask you will need to create two additional accounts, export all three private keys and copy them somewhere safe we will be needing them later, alot in the project depends on that mostly our scripts for testing and interacting with alfajores testnet.
-    ![create_account](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/create_account.gif)
+    ![create_account](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/create_account.gif)  ![private_key](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/private_key.gif)
 
-    ![private_key](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/private_key.gif)
+
 
     - Connect Metamask to Alfajores
     - Click on "Ethereum Mainnet" in your MetaMask extension, then click on "Add Network".
