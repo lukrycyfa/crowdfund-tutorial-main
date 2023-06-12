@@ -34,7 +34,7 @@
 - Computers, on the other hand, are objective, infallible and trustworthy.
 - The very idea of smart contracts is thus inextricably tied to the elimination of human judgment, the reduction of dependence on financial intermediaries and, in many instances, a detachment from the legal system.
 - In other, more commercially-oriented contexts, smart contracts can simply be seen as part of the broader trend to use technology to ensure a consistent application of legal rules and agreements.
-(provide a screen shot depicting a smart contract)
+![smart_con](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/smart_con.png)
 
 
 ### 3.2 Celo and Alfajores Testnet..
