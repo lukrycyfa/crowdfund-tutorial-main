@@ -47,7 +47,7 @@
 
 - what is Eth-brownie?
 
-- Eth-brownie unlike other frameworks for developing and testing Smart Contract such as hardhat or truffle written in JavaScript, is Python based Targeting EVM's to achieve the same purpose and is built and depends much on web3.py. [need more on web3.py](https://web3py.readthedocs.io/en/stable/). Where you have developers that will be interested in developing and testing smart contracts in JavaScript this framework was built for developers who would prefer to do the same using python. To understand more on Eth-brownie and Usage [Read the Docs](https://eth-brownie.readthedocs.io/en/stable/).
+- Eth-brownie unlike other frameworks for developing and testing Smart Contract such as hardhat or truffle written in JavaScript, is Python based Targeting EVM's to achieve the same purpose and is built and depends much on web3.py. [here a link to web3.py Docs](https://web3py.readthedocs.io/en/stable/). Where you have developers that will be interested in developing and testing smart contracts in JavaScript this framework was built for developers who would prefer to do the same using python. To understand more on Eth-brownie and Usage [Read the Docs](https://eth-brownie.readthedocs.io/en/stable/).
 
 - Having understood what Eth-brownie is let's have a look at its structure and some of its features.
 
@@ -113,7 +113,6 @@ $ brownie networks list
 ``` 
 ![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
-// am here
 #### 3.3.4 Contracts
 
 - Brownie provides a ContractContainer Object for each deployable contract in your project. They are list-like objects used to deploy new contracts. When a contract is deployed you are returned a Contract object that can be used to interact with it. This object is also added to the ContractContainer. Contract objects contain class methods for performing calls and transactions.
