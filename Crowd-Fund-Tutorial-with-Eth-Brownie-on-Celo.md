@@ -1,10 +1,11 @@
 # Developing Testing and Deploying A Crowdfund Smart Contract With Eth-Brownie On Celo Alfajores. 
 
-- This tutorial put readers through developing, testing and deploying a crowdfund smart contract having extra Utilities and less abstraction that could be used in live cases. Included in the Smart Contract are not just utilities for funding’s but also utilities for a blog, where users and contributors on subjects, get informed and updates on fundings, tackling issues and could even grow a community. Another utility that will be created would be a utility for Handing out Awards in form of tokens to our donors since the contract will be based off an ERC721 Token standard Created for NFT's (Non fungible Tokens). [more on token standard here](https://ethereum.org/en/developers/docs/standards/tokens/). For the purpose of handing out tokens to our donors, This tutorial contains a reserved section that explains just enough for this projects, on Generative Art i.e. generating  unique images for our tokens using an art engine. A Dapp to this project is linked [here](https://crowdfund-dapp-seven.vercel.app/), a link to a boilerplate for the tutorial [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate) and a link to the [tutorial project here](https://github.com/lukrycyfa/crowdfund-tutorial-project).
+- This tutorial put readers through developing, testing and deploying a crowdfund smart contract having extra Utilities and less abstraction that could be used in live cases. Included in the Smart Contract are not just utilities for funding’s but also utilities for a blog, where users can contribute on subjects, get informed and updates on fundings, tackling issues and could even grow a community. Another utility that will be created would be a utility for Handing out Awards in form of tokens to our donors since the contract will be based off an ERC721 Token standard Created for NFT's (Non fungible Tokens). [more on token standard here](https://ethereum.org/en/developers/docs/standards/tokens/). For the purpose of handing out tokens to our donors, This tutorial contains a reserved section that explains just enough for this projects, on Generative Art i.e. generating  unique images for our tokens using an art engine. A Dapp to this project is linked [here](https://crowdfund-dapp-seven.vercel.app/), a link to a boilerplate for the tutorial [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate) and a link to the [tutorial project here](https://github.com/lukrycyfa/crowdfund-tutorial-project).
 
-- On completing this tutorial readers will be expected to understand and gain some expirience on how to develop deploy and test a smart contract on celo alfajores using Eth-brownie a Python Framework for developing and testing smart contracts, create scripts that could be used to interact with your contract on the chain using Python and gain some basic understanding on generative arts.
+- On completing this tutorial, readers will be expected to understand and gain some expirience on how to develop deploy and test a smart contract on celo alfajores using Eth-brownie a Python Framework for developing and testing smart contracts, create scripts that could be used to interact with your contract on the chain using Python and gain some basic understanding on generative arts.
 
-- ⏰ time for the tutorial
+- ⏰ 85 minutes Read.
+- 👷🏾‍♀️ Difficulty Intermediate.
 
 ## 1.0 Required Tech-Stack's  🛠
 
@@ -18,7 +19,7 @@
 
 - [Ganache](https://www.npmjs.com/package/ganache).
 
-- [nft-genrator-py](https://link/here).
+- [nft-genrator-py](https://github.com/lukrycyfa/nft-generator-py).
 
 ## 2.0 Prerequisites... 🔑
 
@@ -38,8 +39,6 @@
 
 
 ### 3.2 Celo and Alfajores Testnet..
-
-- Celo is a mobile-first blockchain that 
 
 - Celo is the carbon-negative, mobile-first, EVM-compatible blockchain ecosystem leading a thriving new digital economy for all. Making decentralized financial (DeFi) tools and services accessible to anyone with a mobile phone. It aims to break down barriers by bringing the powerful benefits of DeFi to the users of the 6 billion smartphones in circulation today. The celo Afajores Testnet is a Celo test network for developers building on the Celo platform. It could be used to try out the Celo Wallet or Celo CLI. Other use cases specifically for this tutorial would be to test and deploy The Smart Contract we will be developing.. 
 
@@ -88,7 +87,7 @@ $ brownie bake nft
     - The contract directory holds the contract files in a project. Each time brownie is executed it looks up this directory for new files or an update in any existing file and makes updates to compiled sources. The default extensions for file in this directory are in the .sol for solidity files and .vy for vyper files.
 
 - interfaces/: Interface sources
-    - the interface directory holding interfaces sources that could be referenced in contract's, but  not really necessary except it has a source to be referenced in a contract in the project. The default extensions for file in this directory are in the .sol for solidity files and .vy for vyper files.
+    - the interface directory holds interfaces sources that could be referenced in contract's, but not really necessary except it has a source to be referenced in a contract in the project. The default extensions for file in this directory are in the .sol for solidity files and .vy for vyper files.
 
 - Scripts/: Scripts for deployment and interactions
     - The script directory holds the scripts that will be utilized in deploying or interacting with our project via Brownie console. (Default extension for these files are in .py for python files)
@@ -146,9 +145,8 @@ $ brownie networks list
     Create a wallet as described.
 
     - After setting up metamask you will need to create two additional accounts, export all three private keys and copy them somewhere safe we will be needing them later, alot in the project depends on that mostly our scripts for testing and interacting with alfajores testnet.
+
     ![create_account](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/create_account.gif)  ![private_key](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/private_key.gif)
-
-
 
     - Connect Metamask to Alfajores
     - Click on "Ethereum Mainnet" in your MetaMask extension, then click on "Add Network".
@@ -160,13 +158,11 @@ $ brownie networks list
     Enter your wallet address and click on "Faucet".
     When you open your MetaMask extension, you should be able to see the Celo tokens you have received. To see the cUSD tokens, click on assets, then click on the "Import tokens" link, and enter "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" as the "Token Contract Address".
 
-
 #### 4.1.1 Installing Eth-Brownie..
 
 - Eth-brownie Could be installed via "pipx", “pip" or cloning the repo and installing via the setup script. If you’re not familiar with pipx I suggest you use "pip" or clone the repo (🚨 i mean safety first 🚨).
 
 - installing via pipx..
-
 ```bash
 python -m pip install --user pipx
 python -m pipx ensurepath
@@ -216,7 +212,6 @@ python -m pip install -r requirements.txt
 ```bash
 brownie pm install OpenZeppelin/openzeppelin-contracts@4.8.2
 ```
-
 - verify the installed package
 ```bash
 brownie pm list
@@ -266,6 +261,7 @@ brownie init
 
 ![project-structure](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/project-structure.png)
 
+
 ##### 4.2.0.2 Creating The Smart Contract
 
 - like any other programming language Solidity utilize data-type and variables to create functionalities and store data. It further utilize specifiers and modifiers to create restrictions and keep functionalities within confines. More details on features we will be utilizing are seen below. [Read The Docs](https://docs.soliditylang.org/en/v0.8.20/) if you need more on solidity programming.
@@ -273,8 +269,8 @@ brownie init
 - Data Types
     - uint: unsigned integer of 256 bits (could also come in bits of different sizes) 
     - strings: String literals e.g("foo" or 'bar') 
-    - arrays: Arrays can ba of a fixed size, or they can be dynamically size.
-    - mappings: Mappings are like dicts in python. but in solidity a hash-table virtually initialized where every possible value exists and is mapped to a value.
+    - arrays: Arrays can be of a fixed size, or they can be dynamically size.
+    - mappings: Mappings are like dicts in python, but in solidity a hash-table virtually initialized where every possible key exists and is mapped to a value.
     - structs: Structs are custom defined types that can group several variables.
     - address: Holds a 20 byte value (size of an Ethereum address) e.g an wallet address or a contract address.
     - bool: basically a boolean.
@@ -290,7 +286,7 @@ brownie init
 
 - Modifiers
     - view for functions: added to disallow modification of states. utilized in a getter function.
-    - payable for functions: Applied to functions that invovles sending tokens allowing the token to be received together with a call.
+    - payable for functions: Applied to functions that involves sending tokens allowing the token to be received together with a call.
     - onlyowner for functions: Applied to functions, to be called only by the owner of the contract.
     - virtual for functions and modifiers: Allows the function’s or modifier’s behaviour to be changed in derived contracts.
     - override: States that this function, modifier or public state variable changes the behaviour of a function or modifier in a base contract.
@@ -298,7 +294,7 @@ brownie init
 - Require: a function taking an expression like condition to return a bool, that needs to be met as its first argument and a string that is returned if the first argument is not met as its second argument. 
  
 - Let's create our Crowdfund smart contract explaing its utilities and functionalities as we walk through. 
-- Create a Crowdfund.sol file in the. /contracts directory. By default every contract to be created in an Eth-brownie project goes into this directory. 
+- Create a Crowdfund.sol file in the ./contracts directory. By default every contract to be created in an Eth-brownie project goes into this directory. 
 
 - Now let's get into the Crowdfund Smart Contract by Code blocks.
 
@@ -313,7 +309,7 @@ pragma solidity >=0.7.0 <0.9.0;
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L2).
 
-- This next block are the imported libraries and modules required by the contract from the OpenZeppelin-contracts library.
+- This next block are the imports required by the contract from the OpenZeppelin-contracts library.
     - The first line imports ERC721.sol, to base our contract off this token standard. We will be needing some of the functions from its interface.
     - the second line imports ERC721Enumerable.sol, implying the tokens in this contract and token's owned by accounts on this contract could be enumerated.
     - the third line imports ERC721URIStorage.sol, Implying the contract supports the storage of tokens Uri's generated on it.
@@ -343,7 +339,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L11).
 
-- On the next four lines we would create four instances of the Counter method that will be used for these private variables on the next for line's i.e. `_DonorsCount`, `_PostsCount`, `_ActPstCount` and `_tokenIdCounter`. The Counter instances will be used to keep track of the values to the variables.
+- On the next four lines we would create four instances of the Counter method that will be used for these private variables on the next four line's i.e. `_DonorsCount`, `_PostsCount`, `_ActPstCount` and `_tokenIdCounter`. The Counter instances will be used to keep track of the values to the variables.
 
 ```sol
 
@@ -360,7 +356,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L24).
 
 
-- Next we are creating our variable's for `_TotalDonations` and `_DonationBalance` and applying `public` and `private` specifiers to them.
+- Next we are creating our variable's for `_TotalDonations` and `_DonationBalance` and applying `public` and `private` specifiers to them respectively.
 
 ```sol
 
@@ -370,7 +366,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L30).
 
-- Now we will need to identify a donor, a post and who is liking a post so...
+- Now we will need to identify a donor, a post and who is liking a post so..
     - Here we will be creating three structs the first struct for a `Donor` having variables `donorsIdx`, `adr`, `amount` and `donCount`.
     - the second struct for a `Post` having variables `postIdx`, `author`, `post`, `slug` and `likecount`.
     - And the third struct for a `likeAdrs`. With variables `user` and `liked`.
@@ -402,9 +398,9 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 
 - On these next lines we will create Mappings for instances of the above identifiyers. So when making calls to functions that create those instances they are saved as state variables.
-    - On this block we will create three mappings the first map is for our `PostLikes` Mapping a postId to a mapping that maps an address to a `LikeAdrs` Struct
+    - On this block we will create three mappings the first map is for our `PostLikes` Mapping a postId to a mapping that maps an address to a `LikeAdrs` Struct,
     - the second `AllPosts` maps a postId to a `Post` Struct,
-    - the third `AllDonors` maps a address to a `Donor` Struct.
+    - the third `AllDonors` maps a address to a `Donor` Struct
     - and the last line is an array for our donors addresses which we will be using for refrencing, and returning values from `Alldonors` later.
 
 ```sol
@@ -420,11 +416,10 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L70).
 
-- This Block of the code will be where we initiate our constructor, which is executed when a Contract Deployed. Here you could assigne values to already defined state variables you need to at deployment. So we are incrementing our `_tokenIdCounter` to begin the token count at 1. Before subsequent updates to be made deploying the contract. 
+- This Block of the code will be where we initiate our constructor, which is executed when a Contract is Deployed. Here you could assigne values to already defined state variables you need to at deployment. So we are incrementing our `_tokenIdCounter` to begin the token count at 1. Before subsequent updates to be made after deploying the contract. 
 
 ```sol
 
-    //Initiated At first Contract Deployment.
     constructor() ERC721("FundRaiserNFTs", "FRN") { 
           // Initialize the tokenIdCounter to start 1
          _tokenIdCounter.increment();
@@ -455,9 +450,9 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 - In the next couple of code blocks we will be creating functions defined for the crowdfund utility in our contract.
 
-- In this block of code we create our `safeMint()` function to mint awards to our donors, having some conditions to meet before the minting process is possible.
-- The first line defines the function with an argument of a string `uri` then a `public` `specifier`. The second line makes use of require to assert that the amount of times the user has donated is > amount of token's on the users wallet to guarantees a mint.
-- the third line assigns a new tokenId from the current `_tokenIdCounter` value, the fourth line increments the `_tokenIdCounter `for the next mint, the fifth and sixth `_safeMint` the token to the caller and assigns the `uri` to the token. While the last line is our event emitter emitting a token has been minted.
+- In this block of code we create our `safeMint()` function to mint awards to our donors, having some conditions to be met before the minting process is possible.
+    - The first line defines the function with an argument of a string `uri` then a `public` `specifier`. The second line makes use of require to assert that the amount of times the user has donated is > amount of token's on the users wallet to guarantees a mint.
+    - the third line assigns a new tokenId from the current `_tokenIdCounter` value, the fourth line increments the `_tokenIdCounter `for the next mint, the fifth and sixth `_safeMint` the token to the caller and assigns the `uri` to the token. While the last line is our event emitter emitting a token has been minted.
 
 ```sol
 
@@ -474,8 +469,8 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L95).
 
 - This next block creates our `Donate()` function to accept donations made to the crowdfund.
-    - the first line defines the function adding a `public` `specifier` and a `modifier` `payable`, the second and third lines makes use of require to assert first that the caller is not the `contract owner` and the next asserting the value sent for donation is not < the minimum donation value.
-    - The fourth line transfers the donation to the `contract owner`, the next line makes update to `_TotalDonations` & `_DonationBalance` 
+    - the first line defines the function adding a `public` `specifier` and a `modifier` `payable`, the second and third lines makes use of require to assert first, that the caller is not the `contract owner` and the next asserting the value sent for donation is not < the minimum donation value.
+    - The fourth line transfers the donation to the `contract owner`, the next line makes update to `_TotalDonations` & `_DonationBalance` variables,
     - the next block checks if the caller had made a donation before and updates the necessary variables then emits a donation has been made,  
     - Else a new `Donor` struct should be created using the next block for the caller and a DonationMade Even is emitted. 
 
@@ -508,7 +503,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L108).
 
 - Next we create a function that makes transfers of donations to other accounts just in cases where a project will be needing funding.
-    - Here we first define our `TransferDonations()` function  with the `payable` `modifier` assigned to the `adr` argument  we will be transfering the donation to. Then apply the `payable`, `onlyOwner` `modifiers` and a `public` `specifier` to the function. 
+    - Here we first define our `TransferDonations()` function  with the `payable` `modifier` assigned to the `adr` argument we will be transfering the donation to. Then apply the `payable`, `onlyOwner` `modifiers` and a `public` `specifier` to the function. 
     - The next two lines makes use of the require function restricting transfers to the owners account and asserting the value to be transferred is < `_DonationBalance`. 
     - The last three lines makes the transfer, updates the donation balance and emits the DonationTransfered Event.
 
@@ -571,7 +566,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L163).
 
 - In this section we will be creating functions that will be utilized to interact with the blog (again why i feel one might need of a blog on a crowdfund project is to actually keep a growing audience of donor and people interested in our goal and purpose however this isn’t a blog with complete features).
-    - In the next block we are creating is the `NewPost()` function, taking two strings as arguments a `post` and a `slug` and applying the `public` `specifier`. 
+    - In the next block we are creating the `NewPost()` function, taking two strings as arguments a `post` and a `slug` and applying the `public` `specifier`. 
     - the second line makes use of the require function, making assertions on the post, 
     - the third to fifth line creates an instance of a Post, 
     - the next two line's increments `_PostsCount`, `_ActPstCount` and the last emits the `NewPostAdded` Event. 
@@ -595,7 +590,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 - Next we create a function to like and unlike our posts, the function takes an argument of a `postId` and a `public` `specifier`. 
     - The next line asserts the post is a valid post, the third line looks up if there is a `likeAdrs` instance for the caller.
-    - The next five lines updates the liked status to `false` the next four updates the liked status to `true `, 
+    - The next five lines updates the liked status to `false` the next four updates the liked status to `true ` and emits the `LikedPost` Event, 
     - The next six lines creates a new `likeAdrs` instance of the caller on that post if the caller's instance never existed and emits the `LikedPost` Event.
 
 ```sol
@@ -646,7 +641,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 - This block defines the `DeletePost()` function, taking an argument of a `postId` and a `public` `specifier`. 
     - The second and third line's asserts the post is a valid one and the caller is the author of the post.
-    - the last three line's delete's the post, decrement the `_ActPstCount` and emits The DeletePost Event.
+    - the last three line's delete's the post, decrement the `_ActPstCount` and emits The `DeletePost` Event.
 
 ```sol
 
@@ -661,7 +656,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L234).
 
-- The last block for our Blog utility is a function `ReturnPosts()` with a a `public` `specifier`, a `view` `modifier` we create to return an array of active post. Utilizing a loop to iterate over active posts. 
+- The last block for our Blog utility is a function `ReturnPosts()` with a  `public` `specifier`, a `view` `modifier` we create to return an array of active post. Utilizing a loop to iterate over active posts. 
 
 ```sol
 
@@ -727,7 +722,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L260).
 
 
-#### 4.2.1 The Crowd Fund Smart Contract.
+#### 4.2.1 The CrowdFund Smart Contract.
 
 - This is what your entire Crowdfund.sol contract should look like. 
 
@@ -984,10 +979,10 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 #### 4.2.2 Deploying The Smart Contract
 
-- To interact or make use of our contract either locally or on the testnet our contract needs to be compiled and then deployed for that purpose we will be creating a deploy script to deploy our contract, a config file for deployment configurations and a .env files for our keys. In the ./scripts the default directory for scripts create a deploy.py file to populate with our deploy script, create a brownie-config.yaml file in the root directory (brownie-config.yaml default naming convention for a brownie config file) for our deployment configuration and a .env file we will use to populate our key's.
+- To interact or make use of our contract either locally or on the testnet our contract needs to be compiled and then deployed for that purpose we will be creating a deploy script to deploy our contract, a config file for deployment configurations and a .env files for our keys. In the ./scripts the default directory for scripts create a deploy.py file to populate with our deploy script, create a brownie-config.yaml file in the root directory (brownie-config.yaml default naming convention for a brownie config file) for our deployment configuration and a .env file we will use in populating our key's.
 
 - By default when creating an Eth-brownie script a `main()` function should be defined in it (e.g. in a deploy.py file), so when the script is called the function is executed e.g. `brownie run deploy.py` executes the `main()` in it. 
-- Here is another way to creating and calling an Eth-brownie script having several functions. Create the script (e.g. running.py) define your functions e.g. `getBlogs()` or `getDonations()` and while calling the script just call the function alongside the script i.e. `brownie run running.py getBlogs` or `brownie run running.py getDonations`. For the deploy script we will be using the default approach and use the other method for the scripts we will be using to interact with our project on the chain.
+- Here is another way to creating and calling an Eth-brownie script having several functions. Create the script (e.g. running.py) define your functions e.g. `getBlogs()` or `getDonations()` and while calling the script just call the function alongside the script i.e. `brownie run running.py getBlogs` or `brownie run running.py getDonations`. For the deploy script we will stick to the default approach and use the other method for the scripts we will be using to interact with our project on the chain.
 
 - Create the .env file and populate these keys with the extracted keys from the previously created metamask accounts and do make sure you have funded accounts.
 
@@ -1033,7 +1028,7 @@ export PRIVATE_KEY_ACC2=
 
 - Creating the deploy.py file
 - Let begin with our imports, we import our `FundRaiser` contract from the Contractcontainer that will be created when the contract is complied, our accounts for interacting with the local chain, the network and the config file from brownie.
-- Then we import `LinearScalingStrategy` to set the gas price for our deploy transaction and then import json.
+- Then we import `LinearScalingStrategy` to set the gas price for our deployment transaction and then import json.
 
 
 ```py
@@ -1053,7 +1048,7 @@ gas_strategy = LinearScalingStrategy("10 gwei", "50 gwei", 1.1)
 - In the deploy script we Create our `main()` function.
 - looking up first if the network to be deployed on is alfajores and deploy the contract using the first key from our config file (i.e. the first exported key should be the owners account). 
 - The next if block validates if we are to deploy on the development network i.e. ganache and deploy the contract with brownies pre-defined accounts.
-    - whats happning here is we are adding our private key to brownies account to create an account that coulde be used on the testnet
+    - whats happning here is we are adding our private key to brownies account to create an account that coulde be used on the testnet on the block of code that has to do with alfajores
     - and then deploying the contract with the `deploy` method of the `FundRaiser` Object.
 
 ```py
@@ -1157,8 +1152,8 @@ funds.ReturnPosts()
 
 [More on brownie tests](https://eth-brownie.readthedocs.io/en/stable/tests-pytest-intro.html?highlight=tests#writing-unit-tests)
 
-- These tests are some series of calls, transactions and assertions to make sure our contract responds as it should. 
-- The Created functions tests the Crowdfund and Blogs methods in our smart contract.
+    - These tests are some series of calls, transactions and assertions to make sure our contract responds as it should. 
+    - The Created functions tests the Crowdfund and Blogs methods in our smart contract.
 
 ```py
 
@@ -1238,7 +1233,6 @@ brownie test tests/test_OnGanache.py
 ![test-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-local.png)
 
 
-
 ##### 4.2.2.2 Next Deploy and test the contract on The Alfajores testnet
 
 ```bash
@@ -1297,9 +1291,9 @@ funds.ReturnPosts()
 
 - Now Create a test_OnAlfajores.py file in the `./tests` directory and populate it with the code below or you could create your own test.
 
-- These tests are a series of calls, transactions and assertions to make sure our contract responds as it should. 
-- The Created functions tests the Crowdfund and Blogs methods in our smart contract.
-- Our extra accounts come in handy here.
+    - These tests are a series of calls, transactions and assertions to make sure our contract responds as it should. 
+    - The Created functions tests the Crowdfund and Blogs methods in our smart contract.
+    - Our extra accounts come in handy here.
 
 ```py
 
@@ -1390,12 +1384,12 @@ brownie test tests/test_OnAlfajores.py --network alfajores
 - `./images` and `./metadata` will be were our images and metadata go into after the are generated. 
 - `./trait-layers` with sub-directories `./backgrounds` for the background images  `./foreground` for the foreground images `./text` for our text images.
 
-- The images used where rarely edited i didn’t get to do any Photo Shoping. Just examples for this tutorial. The idea is for you to understand how it works and get to come up with your own idea or you could just use and improve on mine. 
+- The images used where rarely edited i did not get to do any Photo Shoping, Just examples for this tutorial. The idea is for you to understand how it works and get to come up with your own idea or you could just use and improve on this. 
 
 - Take Note.
 - All images should have dimensions of `1000x1000` and must be in `.png` format.
 
-- The config file is an Object with `layers` where unique images and metadata are generated from by selecting images from each layer in the config, each layer having key-pair values and the chances an image is selected in a layer is based on the `weights`. 
+- The config file is an Object with `layers` where unique images and metadata are generated from by selecting images from each layer in the config, each layer having an Object with key-pair values and the chances an image is selected in a layer is based on the `weights`. 
 - The `incompatibilities` is where images in layers that are incompatible due to color or other reasons are defined.
 - The `name` is the default prefix for each image or metadata name and `description` describes the whole batch generated.
 - Use the README.md for more info because of time on this tutorial. 
@@ -1475,7 +1469,7 @@ export SECRET_API_KEY= your api secret key
     - [Ganache interactive script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/useFundsLocal.py).
     - [Utility script](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/utility.py).
 
-- What’s happing in our scripts is there are three created functions to make calls to related functionalities in our crowdfund contract, in each script that interacts with their respective networks and the utility script carries functions that sends data to the IPFS and collect inputs from the terminal. All you have to do is to call the script alongside a function e.g.
+- What’s happing in these scripts is there are three created functions to make calls to related functionalities in our crowdfund contract, in each script that interacts with their respective networks and the utility script carries functions that sends data to the IPFS and collect inputs from the terminal. All you have to do is to call the script alongside a function e.g.
 
 - For donations and minting on alfajores
 ```bash
@@ -1519,7 +1513,7 @@ https://github.com/lukrycyfa/crowdfund-tutorial-main/assets/64338703/3b2db0b7-3f
 ## 5.0 FAQ....
 - Ipfs: The InterPlanetary File System (IPFS) is a protocol, hypermedia and file sharing peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting IPFS hosts. IPFS can among others replace the location based hypermedia server protocols http and https to distribute the World Wide Web. [wikipedia](https://en.wikipedia.org/wiki/InterPlanetary_File_System).
 
-- Nft Erc721 token standard: A Non-Fungible Token (NFT) is used to identify something or someone in a unique way. This type of Token is perfect to be used on platforms that offer collectible items, access keys, lottery tickets, numbered seats for concerts and sports matches, etc. This special type of Token has amazing possibilities so it deserves a proper Standard, the ERC-721 came to solve that
+- Nft Erc721 token standard: A Non-Fungible Token (NFT) is used to identify something or someone in a unique way. This type of Token is perfect to be used on platforms that offer collectible items, access keys, lottery tickets, numbered seats for concerts and sports matches, etc. This special type of Token has amazing possibilities so it deserves a proper Standard, the ERC-721 came to solve that.
 
 ## 6.0 Conclution
-- From this tutorial we have gained some reasonable amount of experience using One of Celo Blockchain Technology's (alfajores testnet) and Eth-brownie to develop test and deploy a crowdfund smart contract with extra features and got to generate unique images to associate with token's using a generative art engine written in python and gained other valuable insight's about Smart contract's and other Technologies. After completing this tutorial you should be encouraged to create your own unique smart contract's or improve on the existing contract and explore more on Celo Blockchain Technologies and Eth-brownie. Congrats on completing this tutorial 🥳.
+- From this tutorial we have gained some reasonable amount of experience using One of Celo alfajores testnet and Eth-brownie to develop test and deploy a crowdfund smart contract with extra features and got to generate unique images to associate with token's using a generative art engine written in python and gained other valuable insight's about Smart contract's and other Technologies. After completing this tutorial you should be encouraged to create your own unique smart contract's or improve on the existing contract and explore more on Celo Blockchain Technologies and Eth-brownie. Congrats on completing this tutorial 🥳.
