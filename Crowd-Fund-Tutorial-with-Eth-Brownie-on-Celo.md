@@ -5,7 +5,7 @@
 - On completing this tutorial, readers will be expected to understand and gain some experience on how to develop deploy and test a smart contract on celo alfajores using Eth-brownie a Python Framework for developing and testing smart contracts, create scripts that could be used to interact with your contract on the chain using Python and gain some basic understanding on generative arts.
 
 - ⏰ 85 minutes Read.
-- 👷🏾♀️ Difficulty Intermediate.
+- 👷🏾 Difficulty Intermediate.
 
 ## 1.0 Required Tech-Stack's  🛠
 
