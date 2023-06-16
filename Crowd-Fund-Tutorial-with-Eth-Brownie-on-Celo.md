@@ -8,7 +8,7 @@
 - ⏰ 75 minutes Read.
 - 👷🏾 Difficulty Intermediate.
 
-## 1.0 Required Tech-Stack's  🛠
+## 1.0 Required Tech-Stack's. 🛠
 
 - [Python](https://www.python.org/downloads/).
 
@@ -22,15 +22,15 @@
 
 - [nft-genrator-py](https://github.com/lukrycyfa/nft-generator-py).
 
-## 2.0 Prerequisites.. 🔑
+## 2.0 Prerequisites. 🔑
 
 - To get the most out of this tutorial readers are believed to have some experience in...
 - Solidity Programming, and some experience in writing smart contracts. Link to a [tutorial on developing smart contracts](https://dacade.org/communities/celo/courses/celo-development-101/learning-modules/6c18d048-b3e0-47a0-bdc0-dae8076da410).
 - Python Programming at an Intermediate level. Link to a [course on Python](https://www.udemy.com/course/python-the-complete-python-developer-course/).
 
-## 3.0 A Brief Overview Of Smart Contracts, Celo, Eth-Brownie, Ganache, And Generative Art
+## 3.0 A Brief Overview Of Smart Contracts, Celo, Eth-Brownie, Ganache, And Generative Art.
 
-### 3.1 Smart Contracts
+### 3.1 Smart Contracts.
 
 - Supposedly, smart contracts are contracts that are represented in code and executed by computers. These Contracts are not only created online but their very performance is enabled and guaranteed by a network of decentralized, co-operating computer nodes, known as blockchains. Originally, smart contracts were restricted within a limited range of transactions, predominantly financial instruments. Progressively, however, the surrounding narrative has become broader, implying that all contracts can be made smart or that many different obligations can be enforced by code. What started as a niche phenomenon in such areas as financial derivatives and prediction markets, is now poised to change the entire legal landscape and “revolutionize” commerce. Allegedly, smart contracts can streamline the contracting process, reduce transaction costs by eliminating intermediaries and, most importantly, simplify enforcement without the need to seek protection from traditional legal institutions, such as courts. The theories underpinning smart-contracts and blockchains combine multiple, interrelated threads all of which reflect an indiscriminate, if not irrational, fascination with certain technical characteristics of blockchains. They also reflect a surprising lack of trust in humans. As the latter are perceived as inherently biased and unreliable, things should be left to computers. Humans, especially bankers and judges, are fallible and not trustworthy.
 - Computers, on the other hand, are objective, infallible and trustworthy.
@@ -38,11 +38,11 @@
 - In other, more commercially-oriented contexts, smart contracts can simply be seen as part of the broader trend to use technology to ensure a consistent application of legal rules and agreements.
 ![smart_con](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/smart_con.png)
 
-### 3.2 Celo and Alfajores Testnet..
+### 3.2 Celo and The Alfajores Testnet.
 
 - Celo is the carbon-negative, mobile-first, EVM-compatible blockchain ecosystem leading a thriving new digital economy for all. Making decentralized financial (DeFi) tools and services accessible to anyone with a mobile phone. It aims to break down barriers by bringing the powerful benefits of DeFi to the users of the 6 billion smartphones in circulation today. The Celo Afajores Testnet is a Celo test network for developers building on the Celo platform. It could be used to try out the Celo Wallet or Celo CLI. Other use cases specifically for this tutorial would be to test and deploy The Smart Contract we will be developing.
 
-### 3.3 Eth-Brownie and Ganache
+### 3.3 Eth-Brownie and Ganache.
 
 - What is Eth-brownie?
 - Eth-brownie unlike other frameworks for developing and testing Smart Contracts such as hardhat or truffle written in JavaScript, is Python-based Targeting EVMs to achieve the same purpose and is built and depends much on web3.py. [Here is a link for more on web3.py Docs](https://web3py.readthedocs.io/en/stable/). Where you have developers that will be interested in developing and testing smart contracts in JavaScript this framework was built for developers who would prefer to do the same using Python. To understand more about Eth-brownie and Usage [Read the Docs](https://eth-brownie.readthedocs.io/en/stable/).
@@ -56,7 +56,7 @@
     - Built-in Python like console for quick project interaction (i.e. interacting with deployed contracts).
     - Support for ethPM packages.
 
-#### 3.3.1 Creating A Project With Eth-Brownie..
+#### 3.3.1 Creating A Project With Eth-Brownie.
 
 - Projects in Eth-brownie could be created basically in two ways i.e. an initiated project or a template-based project.
 
@@ -78,7 +78,7 @@ $ brownie bake nft
 ```
 [more brownie mixies](https://github.com/brownie-mix/)
 
-#### 3.3.2 Eth-Brownie Project Structure 📂
+#### 3.3.2 Eth-Brownie Project Structure. 📂
 
 - Every brownie project is composed of this structure
 
@@ -99,7 +99,7 @@ $ brownie bake nft
     - reports/: JSON report files for use in the GUI
 
 <!-- - [An example tutorial on Eth-brownie usage on celo](https://celo.academy/t/building-a-smart-contract-lottery-application-on-celo-with-python/246) -->
-#### 3.3.3 Accounts And Chains
+#### 3.3.3 Accounts And Chains.
 
 - Having access to local accounts to interact with a local chain and make transactions in Eth-brownie, is via Accounts a list-like object that contains Account objects. These accounts can be accessed on the console while making transactions or imported into a .py file to be used in the script.
 
@@ -110,17 +110,17 @@ $ brownie networks list
 ``` 
 ![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
-#### 3.3.4 Contracts
+#### 3.3.4 Contracts.
 
 - Brownie provides a ContractContainer Object for each deployable contract in your project. They are list-like objects used to deploy new contracts. When a contract is deployed you are returned a Contract object that can be used to interact with it. This object is also added to the ContractContainer. Contract objects contain class methods for performing calls and transactions.
 
-#### 3.3.5 Ganache...
+#### 3.3.5 Ganache.
 
 - A Brownie development environment (local-chain) for developers, we will be using to test, deploy and interact with our smart contract. 
 
 - Interacting with our deployed contract, brownie console, and other commands will be looked into when we get into creating our tutorial project.
 
-### 3.4 Generative Art...
+### 3.4 Generative Art.
 
 - Generative art refers to Digital art Works that in whole or in part have been created with the use of autonomous systems i.e. (creative code, artificial intelligence, or an algorithm). However, the term in a broader historical sense refers to any non-human entity that is capable of independently choosing aspects of a piece of art that would normally require a direct choice from an artist. [More resources on generative art](https://aiartists.org/generative-art-design).
 
@@ -156,7 +156,7 @@ $ brownie networks list
     Enter your wallet address and click on "Faucet".
     When you open your MetaMask extension, you should be able to see the Celo tokens you have received. To see the cUSD tokens, click on assets, then click on the "Import tokens" link, and enter "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" as the "Token Contract Address".
 
-#### 4.1.1 Installing Eth-Brownie..
+#### 4.1.1 Installing Eth-Brownie.
 
 - Eth-brownie Could be installed via "pipx", “pip" or cloning the repo and installing via the setup script. If you’re not familiar with pipx I suggest you use "pip" or clone the repo (🚨 I mean safety first 🚨).
 
@@ -188,13 +188,13 @@ brownie
 
 ![brownie](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/brownie.png).
 
-#### 4.1.2 Installing Ganche-cli
+#### 4.1.2 Installing Ganche-cli.
 
 ```bash
 npm install ganache --global
 ```
 
-#### 4.1.3 Installing the Generative Art Engine
+#### 4.1.3 Installing the Generative Art Engine.
 
 ```bash
 git clone https://github.com/lukrycyfa/nft-generator-py.git
@@ -204,7 +204,7 @@ cd nft-generator-py
 python -m pip install -r requirements.txt
 ```
 
-#### 4.1.4 Installing the Contract Dependencies
+#### 4.1.4 Installing the Contract Dependencies.
 
 - installing the OpenZeppelin-contracts library needed for writing our smart contract.
 ```bash
@@ -216,7 +216,7 @@ brownie pm list
 ```
 ![pm-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/pm-list.png)
 
-#### 4.1.5 Adding Alfajores Testnet to Brownie
+#### 4.1.5 Adding Alfajores Testnet to Brownie.
 
 - Add Celo alfajores testnet to brownie for deploying our Contract on the testnet.
     - where:
@@ -244,7 +244,7 @@ brownie networks list
 
 - I have created a boilerplate for this tutorial located [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate). If you would prefer using the boilerplate, do make sure you have all dependencies installed then update, create or rename files that need to be as you go through the tutorial.
 
-##### 4.2.0.1 Initializing the Project
+##### 4.2.0.1 Initializing the Project.
 
 - Let’s Start by creating an initiated brownie project. In a terminal and an empty directory of your choice issue this command.
 
@@ -260,7 +260,7 @@ brownie init
 ![project-structure](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/project-structure.png)
 
 
-##### 4.2.0.2 Creating The Smart Contract
+##### 4.2.0.2 Creating The Smart Contract.
 
 - like any other programming language Solidity utilize data-type and variables to create functionalities and store data. It further utilizes specifiers and modifiers to create restrictions and keep functionalities within confines. More details on the features we will be utilizing are seen below. [Read the Docs](https://docs.soliditylang.org/en/v0.8.20/) if you need more on solidity programming.
 
@@ -974,7 +974,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol).
 
-#### 4.2.2 Deploying The Smart Contract
+#### 4.2.2 Deploying The Smart Contract.
 
 - To interact or make use of our contract either locally or on the testnet our contract needs to be compiled and then deployed for that purpose we will be creating a deploy script to deploy our contract, a config file for deployment configurations, and a .env file for our keys. In the ./scripts the default directory for scripts create a deploy.py file to populate with our deploy script and create a brownie-config.yaml file in the root directory (brownie-config.yaml is default naming convention for a brownie config file) for our deployment configuration, and a .env file we will use in populating our keys
 
@@ -1071,7 +1071,7 @@ def main():
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/deploy.py).
 
-##### 4.2.2.1 Next we deploy and test the contract on the Ganache local network 
+##### 4.2.2.1 Next we deploy and test the contract on the Ganache local network. 
 - Open a new terminal for the ganache network and issue this command
 
 ```bash
@@ -1221,7 +1221,7 @@ brownie test tests/test_OnGanache.py
 ```
 ![test-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-local.png)
 
-##### 4.2.2.2 Next Deploy and test the contract on The Alfajores testnet
+##### 4.2.2.2 Next Deploy and test the contract on The Alfajores testnet.
 
 ```bash
 brownie run deploy.py --network alfajores
@@ -1360,7 +1360,7 @@ brownie test tests/test_OnAlfajores.py --network alfajores
 ![test-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-alfajores.png)
 
 
-### 4.3 Generating Unique Images Using An Art Engine..
+### 4.3 Generating Unique Images Using An Art Engine.
 
 - This part of the tutorial involves generating unique images that will be assigned to awarded tokens for our donor. These images are to represent an identifier or an appreciation for donations or a reference for participation in the crowdfund Project. A complete Dapp to this project built with React.Js could quickly express that idea.[link to Dapp here](https://crowdfund-dapp-seven.vercel.app/) to get a complete idea of the project.
 
@@ -1472,7 +1472,7 @@ brownie run --network alfajores useFundsAlfajores.py returnPosts_Pst
 ```bash
 brownie run --network alfajores useFundsAlfajores.py like_unlikePst
 ```
-#### 4.3.1 Alfajores Interactive Script Demo 
+#### 4.3.1 Alfajores Interactive Script Demo. 
 
 https://github.com/lukrycyfa/crowdfund-tutorial-main/assets/64338703/4a5cbf95-f724-4b56-b9a1-af874abd32be
 
@@ -1489,7 +1489,7 @@ brownie run  useFundsLocal.py returnPosts_Pst
 ```bash
 brownie run  useFundsLocal.py like_unlikePst
 ```
-#### 4.3.2 Ganache Interactive Script Demo
+#### 4.3.2 Ganache Interactive Script Demo.
 
 
 https://github.com/lukrycyfa/crowdfund-tutorial-main/assets/64338703/3b2db0b7-3fbb-47d9-8b9e-e91954ab2514
@@ -1497,10 +1497,10 @@ https://github.com/lukrycyfa/crowdfund-tutorial-main/assets/64338703/3b2db0b7-3f
 
 - 🥳 !and here we have it you could now develop, test and deploy a smart contract on alfajores using eth-brownie. 
 
-## 5.0 FAQ…
+## 5.0 FAQ.
 - Ipfs: The InterPlanetary File System (IPFS) is a protocol, hypermedia, and file-sharing peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting IPFS hosts. IPFS can among others replace the location-based hypermedia server protocols HTTP and HTTPS to distribute the World Wide Web. [wikipedia](https://en.wikipedia.org/wiki/InterPlanetary_File_System).
 
 - Nft Erc721 token standard: A Non-Fungible Token (NFT) is used to identify something or someone in a unique way. This type of Token is perfect to be used on platforms that offer collectible items, access keys, lottery tickets, numbered seats for concerts and sports matches, etc. This special type of Token has amazing possibilities so it deserves a proper Standard, the ERC-721 came to solve that.
 
-## 6.0 Conclusion
+## 6.0 Conclusion.
 - From this tutorial, we have gained a reasonable amount of experience using Celo alfajores testnet and Eth-brownie to develop, test, and deploy a crowdfund smart contract with extra features and got to generate unique images to associate with tokens using a generative art engine written in python and gained other valuable insights about Smart contracts and other Technologies. After completing this tutorial you should be encouraged to create your own unique smart contracts or improve on the existing contract and explore more on Celo Blockchain Technologies and Eth-brownie. Congrats on completing this tutorial 🥳.
