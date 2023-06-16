@@ -1,5 +1,6 @@
 # Developing Testing and Deploying a Crowdfunding Smart Contract with Eth-Brownie on Celo Alfajores. 
 
+## Introduction.
 - This tutorial puts readers through developing, testing, and deploying a crowdfunding smart contract having extra Utilities and less abstraction that could be used in live cases. Included in the Smart Contract are not just utilities for funding but also utilities for a blog, where users can contribute on subjects, get informed and updates on funding, tackle issues, and could even grow a community. Another utility that will be created would be a utility for Handing out Awards in the form of tokens to our donors since the contract will be based on an ERC721 Token standard Created for NFTs (Non-fungible Tokens). [More on token standard here](https://ethereum.org/en/developers/docs/standards/tokens/). For the purpose of handing out tokens to our donors. This tutorial contains a reserved section that explains just enough for this project, on Generative Art i.e. generating unique images for our tokens using an art engine. A Dapp to this project is linked [here](https://crowdfund-dapp-seven.vercel.app/), a link to a boilerplate for the tutorial [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate) and a link to the [tutorial project here](https://github.com/lukrycyfa/crowdfund-tutorial-project).
 
 - On completing this tutorial, readers will be expected to understand and gain some experience on how to develop deploy and test a smart contract on celo alfajores using Eth-brownie a Python Framework for developing and testing smart contracts, create scripts that could be used to interact with your contract on the chain using Python and gain some basic understanding on generative arts.
@@ -21,7 +22,7 @@
 
 - [nft-genrator-py](https://github.com/lukrycyfa/nft-generator-py).
 
-## 2.0 Prerequisites... 🔑
+## 2.0 Prerequisites.. 🔑
 
 - To get the most out of this tutorial readers are believed to have some experience in...
 - Solidity Programming, and some experience in writing smart contracts. Link to a [tutorial on developing smart contracts](https://dacade.org/communities/celo/courses/celo-development-101/learning-modules/6c18d048-b3e0-47a0-bdc0-dae8076da410).
