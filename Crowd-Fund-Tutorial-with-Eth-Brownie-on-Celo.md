@@ -322,7 +322,7 @@ import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/access/Ownable.sol";
 import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/utils/Counters.sol";
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L8).
+[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L4).
 
 - On this line, we define our contract as an ERC721, ERC721Enumerable, ERC721URIStorage, and an Ownable Contract.
 
@@ -350,7 +350,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     Counters.Counter private _tokenIdCounter;
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L24).
+[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L17).
 
 
 - Next, we are creating our variables for `_TotalDonations` and `_DonationBalance` and applying `public` and `private` specifiers to them respectively.
@@ -411,7 +411,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     address[] public DonorsAdrLst;
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L70).
+[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L64).
 
 - This Block of code will be where we initiate our constructor, which is executed when a Contract is deployed. Here you could assign values to already defined state variables you need to at deployment, and we are incrementing our `_tokenIdCounter` to begin the token count at 1. Before any subsequent updates to be made after deploying the contract. 
 
