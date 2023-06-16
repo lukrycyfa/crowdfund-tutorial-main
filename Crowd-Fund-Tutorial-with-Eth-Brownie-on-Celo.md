@@ -124,7 +124,7 @@ $ brownie networks list
 
 - Generative art refers to Digital art Works that in whole or in part have been created with the use of autonomous systems i.e. (creative code, artificial intelligence, or an algorithm). However, the term in a broader historical sense refers to any non-human entity that is capable of independently choosing aspects of a piece of art that would normally require a direct choice from an artist. [More resources on generative art](https://aiartists.org/generative-art-design).
 
-## 4.0 The Project in Procedures and Steps
+## 4.0 The Project in Procedures and Steps.
 
 - This tutorial was created with readers in mind having to run into minimal or no issues while trying to work on the project in the tutorial. Most of the issues that might arise while working on the project had already been handled. Except for some core dependencies that may be missing on your machine or you do something that’s not plausible or not provided in the tutorial. For Windows users while installing Dependencies  
 - if you run into a .sh script not being executed, use a terminal that supports bash scripts(e.g. a git terminal)
