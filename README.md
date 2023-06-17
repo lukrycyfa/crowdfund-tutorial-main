@@ -2,7 +2,43 @@
 
 # Table of Content
 - [Introduction](#introduction)
-- [1.0 Required Tech-Stack's](#10-required-tech-stacks-)
+- [1.0 Required Tech-Stack's 🛠](#10-required-tech-stacks-)
+- [2.0 Prerequisites. 🔑](#20-prerequisites-)
+- [3.0 A Brief Overview Of Smart Contracts, Celo, Eth-Brownie, Ganache, And Generative Art](#30-a-brief-overview-of-smart-contracts-celo-eth-brownie-ganache-and-generative-art)
+    - [3.1 Smart Contracts](#31-smart-contracts)
+    - [3.2 Celo and The Alfajores Testnet](#32-celo-and-the-alfajores-testnet)
+    - [3.3 Eth-Brownie and Ganache](#33-eth-brownie-and-ganache)
+         - [3.3.1 Creating A Project With Eth-Brownie](#331-creating-a-project-with-eth-brownie)
+         - [3.3.2 Eth-Brownie Project Structure. 📂](#332-eth-brownie-project-structure-)
+         - [3.3.3 Accounts And Chains](#333-accounts-and-chains)
+         - [3.3.4 Contracts](#334-contracts)
+         - [3.3.5 Ganache](#335-ganache)
+    - [3.4 Generative Art](#34-generative-art)
+- [4.0 The Project in Procedures and Steps](#40-the-project-in-procedures-and-steps)
+    - [4.1 Installing Dependencies and Packages. 🛠](#41-installing-dependencies-and-packages-)
+       - [4.1.1 Installing Eth-Brownie](#411-installing-eth-brownie)
+       - [4.1.2 Installing Ganche-cli](#412-installing-ganche-cli)
+       - [4.1.3 Installing the Generative Art Engine](#413-installing-the-generative-art-engine)
+       - [4.1.4 Installing the Contract Dependencies](#414-installing-the-contract-dependencies)
+       - [4.1.5 Adding Alfajores Testnet to Brownie](#415-adding-alfajores-testnet-to-brownie)
+   - [4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract](#42-developing-deploying-and-testing-our-crowdfund-smart-contract)
+       - [4.2.0 Developing the Smart Contract](#420-developing-the-smart-contract)
+            - [4.2.0.1 Initializing the Project](#4201-initializing-the-project)
+            - [4.2.0.2 Creating The Smart Contract](#4202-creating-the-smart-contract)
+       - [4.2.1 The CrowdFund Smart Contract](#421-the-crowdfund-smart-contract)
+       - [4.2.2 Deploying The Smart Contract](#422-deploying-the-smart-contract)
+            - [4.2.2.1 Next we deploy and test the contract on the Ganache local network](#4221-next-we-deploy-and-test-the-contract-on-the-ganache-local-network)
+            - [4.2.2.2 Next Deploy and test the contract on The Alfajores testnet](#4222-next-deploy-and-test-the-contract-on-the-alfajores-testnet)
+    - [4.3 Generating Unique Images Using An Art Engine](#43-generating-unique-images-using-an-art-engine)
+        - [4.3.1 Alfajores Interactive Script Demo](#431-alfajores-interactive-script-demo)
+        - [4.3.2 Ganache Interactive Script Demo](#432-ganache-interactive-script-demo)
+- [5.0 FAQ](#50-faq)
+- [6.0 Conclusion](#60-conclusion)
+   
+    
+
+    
+
 
 ## Introduction.
 - This tutorial puts readers through developing, testing, and deploying a crowdfunding smart contract having extra Utilities and less abstraction that could be used in live cases. Included in the Smart Contract are not just utilities for funding but also utilities for a blog, where users can contribute on subjects, get informed and updates on funding, tackle issues, and could even grow a community. Another utility that will be created would be a utility for Handing out Awards in the form of tokens to our donors since the contract will be based on an ERC721 Token standard Created for NFTs (Non-fungible Tokens). [More on token standard here](https://ethereum.org/en/developers/docs/standards/tokens/). For the purpose of handing out tokens to our donors. This tutorial contains a reserved section that explains just enough for this project, on Generative Art i.e. generating unique images for our tokens using an art engine. A Dapp to this project is linked [here](https://crowdfund-dapp-seven.vercel.app/), a link to a boilerplate for the tutorial [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate) and a link to the [tutorial project here](https://github.com/lukrycyfa/crowdfund-tutorial-project).
@@ -134,7 +170,7 @@ $ brownie networks list
 - if you run into a .sh script not being executed, use a terminal that supports bash scripts(e.g. a git terminal)
 - Or if you run into issues that have to do with Visual Studio a link to the missing dependency will be provided on the terminal. 
 
-### 4.1.0 Installing Dependencies and Packages. 🛠
+### 4.1 Installing Dependencies and Packages. 🛠
 
 - Get [Python](https://www.python.org/downloads/) v3.9 or >.
 
