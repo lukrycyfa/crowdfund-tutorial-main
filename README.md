@@ -323,7 +323,7 @@ import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/access/Ownable.sol";
 import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/utils/Counters.sol";
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L4).
+
 
 - On this line, we define our contract as an ERC721, ERC721Enumerable, ERC721URIStorage, and an Ownable Contract.
 
@@ -335,7 +335,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L11).
 
 - On the next four lines we would create four instances of the Counter method that will be used for these private variables on the next four lines i.e. `_DonorsCount`, `_PostsCount`, `_ActPstCount`, and `_tokenIdCounter`. The Counter instances will be used to keep track of the values of the variables.
 
@@ -351,7 +350,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     Counters.Counter private _tokenIdCounter;
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L17).
 
 
 - Next, we are creating our variables for `_TotalDonations` and `_DonationBalance` and applying `public` and `private` specifiers to them respectively.
@@ -362,7 +360,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     uint private _DonationBalance;
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L30).
 
 - Now we will need to identify a donor, a post, and who is liking a post so.
     - Here we will be creating three structs the first struct for a `Donor` having variables `donorsIdx`, `adr`, `amount`, and  `donCount`.
@@ -392,7 +389,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L35).
 
 
 - On these next lines we will create Mappings for instances of the above identifiers. So when making calls to functions that create those instances they are saved as state variables.
@@ -412,7 +408,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     address[] public DonorsAdrLst;
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L64).
 
 - This Block of code will be where we initiate our constructor, which is executed when a Contract is deployed. Here you could assign values to already defined state variables you need to at deployment, and we are incrementing our `_tokenIdCounter` to begin the token count at 1. Before any subsequent updates to be made after deploying the contract. 
 
@@ -424,7 +419,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L74).
 
 - In the next block of code we will be creating our event emitters. Think of an event emitter as an Object added to the transaction Object created from some values you defined.
     - The first will be for events a Token was minted.
@@ -444,7 +438,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     event DeletedPost( address sender, uint postId );
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L83).
 
 - In the next couple of code blocks we will be creating functions defined for the crowdfunding utility in our contract.
 
@@ -464,7 +457,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L95).
 
 - This next block creates our `Donate()` function to accept donations made to the crowdfund.
     - the first line defines the function adding a `public` `specifier` and a `modifier` `payable`, the second and third lines makes use of require to assert first, that the caller is not the `contract owner` and the next asserting the value sent for donation is not < the minimum donation value.
@@ -498,7 +490,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L108).
 
 - Next, we create a function that makes transfers of donations to other accounts just in cases where a project will be needing funding.
     - Here we first define our `TransferDonations()` function with the `payable` `modifier` assigned to the `adr` argument we will be transferring the donation to. Then apply the `payable`, `onlyOwner` `modifiers`, and a `public` `specifier` to the function. 
@@ -516,7 +507,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L134).
 
 - The next block is a function created to return an array or in Eth-brownies case a tuple containing the addresses of donors.
     - We define the `DonorAdr()` function with the `public` `specifier`, the `onlyOwner` and `view` `modifiers` which returns a fixed array of addresses using a for loop and the `DonorsAdrLst` array.   
@@ -533,7 +523,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }    
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L146).
 
 - This next function `_donationtBalance()` returns `_DonationBalance`. Defined with `public` `specifier`, the `onlyOwner`, and `view` `modifiers`.
 
@@ -544,7 +533,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }  
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L159).
 
 - On this last block of the Crowdfund utility we create a function `OwnWallet()` Defined with `public` `specifier` and `view` `modifiers`. Returning an enumerated array of tokens owned by the connected account. By getting the balance of the connected account and iterating over it.
 
@@ -561,7 +549,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L163).
 
 - In this section, we will be creating functions that will be utilized to interact with the blog (again why I feel one might need a blog on a crowdfund project is to actually keep a growing audience of donors and people interested in our goal and purpose however this isn’t a blog with complete features).
     - In the next block we are creating the `NewPost()` function, taking two strings as arguments a `post` and a `slug`, and applying the `public` `specifier`. 
@@ -584,7 +571,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L178).
 
 - Next, we create a function to like and unlike our posts, the function takes an argument of a `postId` and a `public` `specifier`. 
     - The next line asserts the post is a valid post, and the third line looks up if there is a `likeAdrs` instance for the caller.
@@ -616,7 +602,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L194).
 
 - The next block is a function we are creating  `ReturnLiked()` taking `postId` as an argument, and applying a `public` `specifier`, a `view` `modifier` and it returns a `bool` 
     - the second line asserts the post is a valid post the third line looks up if the caller has an instance on that post and 
@@ -635,7 +620,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L220).
 
 - This block defines the `DeletePost()` function, taking an argument of a `postId` and a `public` `specifier`. 
     - The second and third line's asserts the post is a valid one and the caller is the author of the post.
@@ -652,7 +636,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L234).
 
 - The last block of code for our Blog utility is a function `ReturnPosts()` with a  `public` `specifier`, a `view` `modifier` we create to return an array of active posts. Utilizing a loop to iterate over active posts. 
 
@@ -672,7 +655,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L246).
 
 - This block of functions are overrides required by solidity. I.e. making a call to any of these functions initiates an override on the contract.
 
@@ -717,7 +699,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     } 
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L260).
 
 
 #### 4.2.1 The CrowdFund Smart Contract.
@@ -1243,7 +1224,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 }
 
 ```
-[Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol).
 
 #### 4.2.2 Deploying The Smart Contract.
 
