@@ -1,62 +1,93 @@
-# Developing Testing and Deploying a Crowdfunding Smart Contract with Eth-Brownie on Celo Alfajores. 
+# Developing, Testing & Deploying a Crowdfunding Smart Contract with Eth-Brownie on Celo Alfajores-
 
-## Introduction.
-- This tutorial puts readers through developing, testing, and deploying a crowdfunding smart contract having extra Utilities and less abstraction that could be used in live cases. Included in the Smart Contract are not just utilities for funding but also utilities for a blog, where users can contribute on subjects, get informed and updates on funding, tackle issues, and could even grow a community. Another utility that will be created would be a utility for Handing out Awards in the form of tokens to our donors since the contract will be based on an ERC721 Token standard Created for NFTs (Non-fungible Tokens). [More on token standard here](https://ethereum.org/en/developers/docs/standards/tokens/). For the purpose of handing out tokens to our donors. This tutorial contains a reserved section that explains just enough for this project, on Generative Art i.e. generating unique images for our tokens using an art engine. A Dapp to this project is linked [here](https://crowdfund-dapp-seven.vercel.app/), a link to a boilerplate for the tutorial [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate) and a link to the [tutorial project here](https://github.com/lukrycyfa/crowdfund-tutorial-project).
+## Table of Contents:
 
-- On completing this tutorial, readers will be expected to understand and gain some experience on how to develop deploy and test a smart contract on celo alfajores using Eth-brownie a Python Framework for developing and testing smart contracts, create scripts that could be used to interact with your contract on the chain using Python and gain some basic understanding on generative arts.
+- [Developing, Testing & Deploying a Crowdfunding Smart Contract with Eth-Brownie on Celo Alfajores](#developing-testing-&-deploying-a-crowdfunding-smart-contract-with-eth-brownie-on-celo-alfajores)
+- [Introduction](#introduction)
+- [1.0 Required Tech-Stack's 🛠](#10-required-tech-stacks)
+- [2.0 Pre-requisites🔑](#20-pre-requisites)
+- [3.0 A Brief Overview Of Smart Contracts, Celo, Eth-Brownie, Ganache, And Generative Art](#30-a-brief-overview-of-smart-contracts-celo-eth-brownie-ganache-and-generative-art)
+    - [3.1 Smart Contracts](#31-smart-contracts)
+    - [3.2 Celo and The Alfajores Testnet](#32-celo-and-the-alfajores-testnet)
+    - [3.3 Eth-Brownie and Ganache](#33-eth-brownie-and-ganache)
+         - [3.3.1 Creating A Project With Eth-Brownie](#331-creating-a-project-with-eth-brownie)
+         - [3.3.2 Eth-Brownie Project Structure. 📂](#332-eth-brownie-project-structure-)
+         - [3.3.3 Accounts And Chains](#333-accounts-and-chains)
+         - [3.3.4 Contracts](#334-contracts)
+         - [3.3.5 Ganache](#335-ganache)
+    - [3.4 Generative Art](#34-generative-art)
+- [4.0 The Project in Procedures and Steps](#40-the-project-in-procedures-and-steps)
+    - [4.1 Installing Dependencies and Packages. 🛠](#41-installing-dependencies-and-packages-)
+       - [4.1.1 Installing Eth-Brownie](#411-installing-eth-brownie)
+       - [4.1.2 Installing Ganche-cli](#412-installing-ganche-cli)
+       - [4.1.3 Installing the Generative Art Engine](#413-installing-the-generative-art-engine)
+       - [4.1.4 Installing the Contract Dependencies](#414-installing-the-contract-dependencies)
+       - [4.1.5 Adding Alfajores Testnet to Brownie](#415-adding-alfajores-testnet-to-brownie)
+   - [4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract](#42-developing-deploying-and-testing-our-crowdfund-smart-contract)
+       - [Entire code](#entire-code)
+       - [4.2.0 Developing the Smart Contract](#420-developing-the-smart-contract)
+            - [4.2.0.1 Initializing the Project](#4201-initializing-the-project)
+            - [4.2.0.2 Creating The Smart Contract](#4202-creating-the-smart-contract)
+       - [4.2.1 The CrowdFund Smart Contract](#421-the-crowdfund-smart-contract)
+       - [4.2.2 Deploying The Smart Contract](#422-deploying-the-smart-contract)
+            - [4.2.2.1 Next we deploy and test the contract on the Ganache local network](#4221-next-we-deploy-and-test-the-contract-on-the-ganache-local-network)
+            - [4.2.2.2 Next Deploy and test the contract on The Alfajores testnet](#4222-next-deploy-and-test-the-contract-on-the-alfajores-testnet)
+    - [4.3 Generating Unique Images Using An Art Engine](#43-generating-unique-images-using-an-art-engine)
+        - [4.3.1 Alfajores Interactive Script Demo](#431-alfajores-interactive-script-demo)
+        - [4.3.2 Ganache Interactive Script Demo](#432-ganache-interactive-script-demo)
+- [5.0 FAQ](#50-faq)
+- [6.0 Conclusion](#60-conclusion)
+
+## Introduction:
+- This tutorial will help programmers in developing, testing and deploying a CrowdFunding Smart Contract having extra utilities and less abstraction that could be used in live cases. Included in the Smart Contract are not just utilities for funding but also utilities for a blog, where users can contribute on subjects, get informed and updates on funding, tackle issues and can even grow a community. Another utility that will be created would be a utility for Handing out Awards in the form of tokens to our donors since the contract will be based on an ERC721 Token standard Created for NFTs (Non-fungible Tokens). [More on token standard here](https://ethereum.org/en/developers/docs/standards/tokens/). For the purpose of handing out tokens to our donors. This tutorial contains a reserved section that explains just enough for this project, on Generative Art i.e. generating unique images for our tokens using an art engine. A Dapp to this project is linked [here](https://crowdfund-dapp-seven.vercel.app/), a link to a boilerplate for the tutorial [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate) and a link to the [tutorial project here](https://github.com/lukrycyfa/crowdfund-tutorial-project).
+
+- On completing this tutorial, readers will be able to understand and gain some experience on how to develop deploy and test a Smart Contract on celo alfajores using Eth-brownie a Python Framework for developing and testing smart contracts, create scripts that could be used to interact with your contract on the chain using Python and gain some basic understanding on generative arts.
 
 - ⏰ 75 minutes Read.
-- 👷🏾 Difficulty Intermediate.
+- 👷🏾 Difficulty Level: Intermediate.
 
-## 1.0 Required Tech-Stack's. 🛠
+## 1.0 Required Tech-Stack's: 🛠
 
-- [Python](https://www.python.org/downloads/).
+1. [Python](https://www.python.org/downloads/).
+2. [Node.js](https://nodejs.org/en/download) for ganache-cli.
+3. [Metamask-Browser-Extension](https://metamask.io). 
+4. [Eth-Brownie](https://pypi.org/project/eth-brownie/).
+5. [Ganache](https://www.npmjs.com/package/ganache).
+6. [nft-genrator-py](https://github.com/lukrycyfa/nft-generator-py).
 
-- [Node.js](https://nodejs.org/en/download). For ganache-cli.
+## 2.0 Pre-requisites: 🔑
 
-- [Metamask-Browser-Extension](https://metamask.io). If you do not already have.
+- [Solidity](https://docs.soliditylang.org/en/v0.8.20/) programming and some experience in writing smart contracts. Link to a [tutorial on developing smart contracts](https://dacade.org/communities/celo/courses/celo-development-101/learning-modules/6c18d048-b3e0-47a0-bdc0-dae8076da410).
+- Python programming. Link to a [course on Python](https://www.udemy.com/course/python-the-complete-python-developer-course/).
 
-- [Eth-Brownie](https://pypi.org/project/eth-brownie/).
+## 3.0 A Brief Overview Of Smart Contracts, Celo, Eth-Brownie, Ganache and Generative Art:
 
-- [Ganache](https://www.npmjs.com/package/ganache).
+### 3.1 Smart Contracts:
 
-- [nft-genrator-py](https://github.com/lukrycyfa/nft-generator-py).
-
-## 2.0 Prerequisites. 🔑
-
-- To get the most out of this tutorial readers are believed to have some experience in...
-- Solidity Programming, and some experience in writing smart contracts. Link to a [tutorial on developing smart contracts](https://dacade.org/communities/celo/courses/celo-development-101/learning-modules/6c18d048-b3e0-47a0-bdc0-dae8076da410).
-- Python Programming at an Intermediate level. Link to a [course on Python](https://www.udemy.com/course/python-the-complete-python-developer-course/).
-
-## 3.0 A Brief Overview Of Smart Contracts, Celo, Eth-Brownie, Ganache, And Generative Art.
-
-### 3.1 Smart Contracts.
-
-- Supposedly, smart contracts are contracts that are represented in code and executed by computers. These Contracts are not only created online but their very performance is enabled and guaranteed by a network of decentralized, co-operating computer nodes, known as blockchains. Originally, smart contracts were restricted within a limited range of transactions, predominantly financial instruments. Progressively, however, the surrounding narrative has become broader, implying that all contracts can be made smart or that many different obligations can be enforced by code. What started as a niche phenomenon in such areas as financial derivatives and prediction markets, is now poised to change the entire legal landscape and “revolutionize” commerce. Allegedly, smart contracts can streamline the contracting process, reduce transaction costs by eliminating intermediaries and, most importantly, simplify enforcement without the need to seek protection from traditional legal institutions, such as courts. The theories underpinning smart-contracts and blockchains combine multiple, interrelated threads all of which reflect an indiscriminate, if not irrational, fascination with certain technical characteristics of blockchains. They also reflect a surprising lack of trust in humans. As the latter are perceived as inherently biased and unreliable, things should be left to computers. Humans, especially bankers and judges, are fallible and not trustworthy.
+- Smart Contracts are contracts that are represented in code and executed by computers. These Contracts are not only created online but their very performance is enabled and guaranteed by a network of decentralized, co-operating computer nodes, known as blockchains. Originally, smart contracts were restricted within a limited range of transactions, predominantly financial instruments. Progressively, however, the surrounding narrative has become broader, implying that all contracts can be made smart or that many different obligations can be enforced by code. What started as a niche phenomenon in such areas as financial derivatives and prediction markets, is now poised to change the entire legal landscape and “revolutionize” commerce. Allegedly, smart contracts can streamline the contracting process, reduce transaction costs by eliminating intermediaries and, most importantly, simplify enforcement without the need to seek protection from traditional legal institutions, such as courts. The theories underpinning smart-contracts and blockchains combine multiple, interrelated threads all of which reflect an indiscriminate, if not irrational, fascination with certain technical characteristics of blockchains. They also reflect a surprising lack of trust in humans. As the latter are perceived as inherently biased and unreliable, things should be left to computers. Humans, especially bankers and judges, are fallible and not trustworthy.
 - Computers, on the other hand, are objective, infallible and trustworthy.
 - The very idea of smart contracts is thus inextricably tied to the elimination of human judgment, the reduction of dependence on financial intermediaries and, in many instances, a detachment from the legal system.
 - In other, more commercially-oriented contexts, smart contracts can simply be seen as part of the broader trend to use technology to ensure a consistent application of legal rules and agreements.
 ![smart_con](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/smart_con.png)
 
-### 3.2 Celo and The Alfajores Testnet.
+### 3.2 Celo and The Alfajores Testnet:
 
-- Celo is the carbon-negative, mobile-first, EVM-compatible blockchain ecosystem leading a thriving new digital economy for all. Making decentralized financial (DeFi) tools and services accessible to anyone with a mobile phone. It aims to break down barriers by bringing the powerful benefits of DeFi to the users of the 6 billion smartphones in circulation today. The Celo Afajores Testnet is a Celo test network for developers building on the Celo platform. It could be used to try out the Celo Wallet or Celo CLI. Other use cases specifically for this tutorial would be to test and deploy The Smart Contract we will be developing.
+- Celo is the carbon-negative, mobile-first, EVM-compatible blockchain ecosystem leading a thriving new digital economy for all. Making decentralized financial (De-Fi) tools and services accessible to anyone with a mobile phone. It aims to break down barriers by bringing the powerful benefits of De-Fi to the users of the 6 billion smartphones in circulation today. The Celo Afajores Testnet is a Celo test network for developers building on the Celo platform. It could be used to try out the Celo Wallet or Celo CLI. Other use cases specifically for this tutorial would be to test and deploy the Smart Contract we will be developing.
 
-### 3.3 Eth-Brownie and Ganache.
+### 3.3 Eth-Brownie and Ganache:
 
-- What is Eth-brownie?
 - Eth-brownie unlike other frameworks for developing and testing Smart Contracts such as hardhat or truffle written in JavaScript, is Python-based Targeting EVMs to achieve the same purpose and is built and depends much on web3.py. [Here is a link for more on web3.py Docs](https://web3py.readthedocs.io/en/stable/). Where you have developers that will be interested in developing and testing smart contracts in JavaScript this framework was built for developers who would prefer to do the same using Python. To understand more about Eth-brownie and Usage [Read the Docs](https://eth-brownie.readthedocs.io/en/stable/).
 
-- Having understood what Eth-brownie is let's have a look at its structure and some of its features.
+- Having understood what Eth-brownie is let's have a look at its structure and some of its features:
 
-    - Fully supports Solidity and Vyper programming languages for Developing Smart contracts.
-    - Smart Contracts are tested via the pytest library and include a trace-based coverage evaluation. 
-    - Property-based and stateful testing via hypothesis for locating edge cases and discovering faulty assumptions within your code.
-    - Utilize built-in powerful debugging tools, including Python-style tracebacks and custom error strings.
-    - Built-in Python like console for quick project interaction (i.e. interacting with deployed contracts).
-    - Support for ethPM packages.
+    1. Fully supports Solidity and Vyper programming languages for Developing Smart contracts.
+    2. Smart Contracts are tested via the pytest library and include a trace-based coverage evaluation. 
+    3. Property-based and stateful testing via hypothesis for locating edge cases and discovering faulty assumptions within your code.
+    4. Utilize built-in powerful debugging tools, including Python-style tracebacks and custom error strings.
+    5. Built-in Python like console for quick project interaction (i.e. interacting with deployed contracts).
+    6. Support for ethPM packages.
 
-#### 3.3.1 Creating A Project With Eth-Brownie.
+#### 3.3.1 Creating A Project With Eth-Brownie:
 
 - Projects in Eth-brownie could be created basically in two ways i.e. an initiated project or a template-based project.
 
@@ -78,9 +109,9 @@ $ brownie bake nft
 ```
 [more brownie mixies](https://github.com/brownie-mix/)
 
-#### 3.3.2 Eth-Brownie Project Structure. 📂
+#### 3.3.2 Eth-Brownie Project Structure: 📂
 
-- Every brownie project is composed of this structure
+- Every brownie project is composed of this structure:
 
 - Contracts/: Contract sources
     - The contract directory holds the contract files in a project. Each time brownie is executed it looks up this directory for new files or an update in any existing file and makes updates to compiled sources. The default extensions for files in this directory are the .sol for solidity files and .vy for vyper files.
@@ -99,7 +130,8 @@ $ brownie bake nft
     - reports/: JSON report files for use in the GUI
 
 <!-- - [An example tutorial on Eth-brownie usage on celo](https://celo.academy/t/building-a-smart-contract-lottery-application-on-celo-with-python/246) -->
-#### 3.3.3 Accounts And Chains.
+
+#### 3.3.3 Accounts And Chains:
 
 - Having access to local accounts to interact with a local chain and make transactions in Eth-brownie, is via Accounts a list-like object that contains Account objects. These accounts can be accessed on the console while making transactions or imported into a .py file to be used in the script.
 
@@ -110,27 +142,27 @@ $ brownie networks list
 ``` 
 ![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
-#### 3.3.4 Contracts.
+#### 3.3.4 Contracts:
 
 - Brownie provides a ContractContainer Object for each deployable contract in your project. They are list-like objects used to deploy new contracts. When a contract is deployed you are returned a Contract object that can be used to interact with it. This object is also added to the ContractContainer. Contract objects contain class methods for performing calls and transactions.
 
-#### 3.3.5 Ganache.
+#### 3.3.5 Ganache:
 
 - A Brownie development environment (local-chain) for developers, we will be using to test, deploy and interact with our smart contract. 
 
 - Interacting with our deployed contract, brownie console, and other commands will be looked into when we get into creating our tutorial project.
 
-### 3.4 Generative Art.
+### 3.4 Generative Art:
 
 - Generative art refers to Digital art Works that in whole or in part have been created with the use of autonomous systems i.e. (creative code, artificial intelligence, or an algorithm). However, the term in a broader historical sense refers to any non-human entity that is capable of independently choosing aspects of a piece of art that would normally require a direct choice from an artist. [More resources on generative art](https://aiartists.org/generative-art-design).
 
-## 4.0 The Project in Procedures and Steps.
+## 4.0 The Project in Procedures and Steps:
 
 - This tutorial was created with readers in mind having to run into minimal or no issues while trying to work on the project in the tutorial. Most of the issues that might arise while working on the project had already been handled. Except for some core dependencies that may be missing on your machine or you do something that’s not plausible or not provided in the tutorial. For Windows users while installing Dependencies  
 - if you run into a .sh script not being executed, use a terminal that supports bash scripts(e.g. a git terminal)
 - Or if you run into issues that have to do with Visual Studio a link to the missing dependency will be provided on the terminal. 
 
-### 4.1.0 Installing Dependencies and Packages. 🛠
+### 4.1.0 Installing Dependencies and Packages: 🛠
 
 - Get [Python](https://www.python.org/downloads/) v3.9 or >.
 
@@ -156,7 +188,7 @@ $ brownie networks list
     Enter your wallet address and click on "Faucet".
     When you open your MetaMask extension, you should be able to see the Celo tokens you have received. To see the cUSD tokens, click on assets, then click on the "Import tokens" link, and enter "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" as the "Token Contract Address".
 
-#### 4.1.1 Installing Eth-Brownie.
+#### 4.1.1 Installing Eth-Brownie:
 
 - Eth-brownie Could be installed via "pipx", “pip" or cloning the repo and installing via the setup script. If you’re not familiar with pipx I suggest you use "pip" or clone the repo (🚨 I mean safety first 🚨).
 
@@ -188,13 +220,13 @@ brownie
 
 ![brownie](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/brownie.png).
 
-#### 4.1.2 Installing Ganche-cli.
+#### 4.1.2 Installing Ganche-cli:
 
 ```bash
 npm install ganache --global
 ```
 
-#### 4.1.3 Installing the Generative Art Engine.
+#### 4.1.3 Installing the Generative Art Engine:
 
 ```bash
 git clone https://github.com/lukrycyfa/nft-generator-py.git
@@ -204,7 +236,7 @@ cd nft-generator-py
 python -m pip install -r requirements.txt
 ```
 
-#### 4.1.4 Installing the Contract Dependencies.
+#### 4.1.4 Installing the Contract Dependencies:
 
 - installing the OpenZeppelin-contracts library needed for writing our smart contract.
 ```bash
@@ -216,7 +248,7 @@ brownie pm list
 ```
 ![pm-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/pm-list.png)
 
-#### 4.1.5 Adding Alfajores Testnet to Brownie.
+#### 4.1.5 Adding Alfajores Testnet to Brownie:
 
 - Add Celo alfajores testnet to brownie for deploying our Contract on the testnet.
     - where:
@@ -235,16 +267,15 @@ brownie networks list
 ```
 ![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
+### 4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract:
 
-### 4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract.
+- In this section, we will be Developing, deploying and testing our smart contract on ganache and celo testnet(alfajores). This section may require much attention as it's the core of this tutorial. We will get to understand more on Eth-Brownie, its scripts, tests, interacting with our deployed contract from the console and more. We would also take the liberty of looking into specifiers, modifiers, variables and some data-types we will be using while creating the smart contract as a recap of your understanding in Solidity Programming.
 
-- In this section, we will be Developing, deploying, and testing our smart contract on ganache and celo testnet(alfajores). This section may require much attention as it's the core of this tutorial. We will get to understand more on Eth-Brownie, its scripts, tests, interacting with our deployed contract from the console and more. We would also take the liberty of looking into specifiers, modifiers, variables and some data-types we will be using while creating the smart contract as a recap of your understanding in Solidity Programming.
-
-#### 4.2.0 Developing the Smart Contract.
+#### 4.2.0 Developing the Smart Contract:
 
 - I have created a boilerplate for this tutorial located [here](https://github.com/lukrycyfa/crowdfund-tutorial-boilerplate). If you would prefer using the boilerplate, do make sure you have all dependencies installed then update, create or rename files that need to be as you go through the tutorial.
 
-##### 4.2.0.1 Initializing the Project.
+##### 4.2.0.1 Initializing the Project:
 
 - Let’s Start by creating an initiated brownie project. In a terminal and an empty directory of your choice issue this command.
 
@@ -259,30 +290,233 @@ brownie init
 
 ![project-structure](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/project-structure.png)
 
+##### Entire code:
 
-##### 4.2.0.2 Creating The Smart Contract.
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.0 <0.9.0;
 
-- like any other programming language Solidity utilize data-type and variables to create functionalities and store data. It further utilizes specifiers and modifiers to create restrictions and keep functionalities within confines. More details on the features we will be utilizing are seen below. [Read the Docs](https://docs.soliditylang.org/en/v0.8.20/) if you need more on solidity programming.
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/token/ERC721/ERC721.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/access/Ownable.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/utils/Counters.sol";
 
-- Data Types
+contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _donorsCount;
+    Counters.Counter private _postsCount;
+    Counters.Counter private _tokenIdCounter;
+
+    uint public _totalDonations;
+    uint private _donationBalance;
+
+    struct Donor {
+        uint donorsIdx;
+        address adr;
+        uint amount;
+        uint donCount;
+    }
+
+    struct Post {
+        uint postIdx;
+        address author;
+        string post;
+        string slug;
+        uint likeCount;
+    }
+
+    struct LikeAdrs {
+        address user;
+        bool liked;
+    }
+
+    // Mapping to track post likes by user
+    mapping(uint => mapping(address => LikeAdrs)) public postLikes;
+
+    // Mapping to store all posts
+    mapping(uint => Post) public allPosts;
+
+    // Mapping to store donor information
+    mapping(address => Donor) public allDonors;
+
+    // List of donor addresses
+    address[] public donorsAdrLst;
+
+    constructor() ERC721("FundRaiserNFTs", "FRN") {
+        _tokenIdCounter.increment();
+    }
+
+    // Events
+    event TokenMinted(address sender, uint tokenId);
+    event DonationMade(address sender, uint amount);
+    event DonationTransferred(address sender, uint amount);
+    event NewPostAdded(address sender, string slug);
+    event LikedPost(address sender, uint postId, bool liked);
+    event DeletedPost(address sender, uint postId);
+
+    // Mint a new token
+    function safeMint(string memory uri) public {
+        require(allDonors[msg.sender].donCount > balanceOf(msg.sender), "The connected account is not eligible to mint a token");
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        _safeMint(msg.sender, tokenId);
+        _setTokenURI(tokenId, uri);
+        emit TokenMinted(msg.sender, tokenId);
+    }
+
+    // Make a donation
+    function donate() public payable {
+        require(msg.sender != owner(), "Donations cannot be made by the contract owner");
+        require(msg.value >= (10**18) * 2, "Sent value below minimum donation");
+        payable(owner()).transfer(msg.value);
+        _totalDonations += msg.value;
+        _donationBalance += msg.value;
+        if (allDonors[msg.sender].adr == msg.sender) {
+            allDonors[msg.sender].amount += msg.value;
+            allDonors[msg.sender].donCount += 1;
+            emit DonationMade(msg.sender, msg.value);
+            return;
+        }
+        Donor storage D = allDonors[msg.sender];
+        D.donorsIdx = _donorsCount.current();
+        _donorsCount.increment();
+        D.adr = msg.sender;
+        D.amount = msg.value;
+        D.donCount += 1;
+        donorsAdrLst.push(msg.sender);
+        emit DonationMade(msg.sender, msg.value);
+        return;
+    }
+
+    // Transfer donations to a specific address
+    function transferDonations(address payable adr) public payable onlyOwner {
+        require(msg.sender != adr, "Transfer to own account is not valid");
+        require(msg.value < _donationBalance, "Withdrawal limit exceeded");
+        adr.transfer(msg.value);
+        _donationBalance -= msg.value;
+        emit DonationTransferred(msg.sender, msg.value);
+    }
+
+    // Get the list of donor addresses
+    function donorAdr() public view onlyOwner returns (address[] memory) {
+        address[] memory Adrs = new address[](donorsAdrLst.length);
+        for (uint256 i = 0; i < donorsAdrLst.length; i++) {
+            Adrs[i] = donorsAdrLst[i];
+        }
+        return Adrs;
+    }
+
+    // Get the current donation balance
+    function donationBalance() public onlyOwner view returns (uint) {
+        return _donationBalance;
+    }
+
+    // Get the tokens owned by the caller
+    function ownWallet() public view returns (uint256[] memory) {
+        uint256 ownerTokenCount = balanceOf(msg.sender);
+        uint256[] memory tokenIds = new uint256[](ownerTokenCount);
+        for (uint256 i = 0; i < ownerTokenCount; i++) {
+            tokenIds[i] = tokenOfOwnerByIndex(msg.sender, i);
+        }
+        return tokenIds;
+    }
+
+    // Add a new post
+    function newPost(string memory post, string memory slug) public {
+        require(bytes(post).length > 0, "Invalid post");
+        Post storage P = allPosts[_postsCount.current()];
+        P.postIdx = _postsCount.current();
+        P.author = msg.sender;
+        P.post = post;
+        P.slug = slug;
+        _postsCount.increment();
+        emit NewPostAdded(msg.sender, slug);
+    }
+
+    // Like or unlike a post
+    function likeAndUnlikePost(uint postId) public {
+        require(allPosts[postId].postIdx == postId, "Invalid post, it does not exist");
+        if (postLikes[postId][msg.sender].user == msg.sender) {
+            if (postLikes[postId][msg.sender].liked) {
+                postLikes[postId][msg.sender].liked = false;
+                allPosts[postId].likeCount -= 1;
+                emit LikedPost(msg.sender, postId, false);
+                return;
+            }
+            postLikes[postId][msg.sender].liked = true;
+            allPosts[postId].likeCount += 1;
+            emit LikedPost(msg.sender, postId, true);
+            return;
+        }
+        allPosts[postId].likeCount += 1;
+        LikeAdrs storage l = postLikes[postId][msg.sender];
+        l.user = msg.sender;
+        l.liked = true;
+        emit LikedPost(msg.sender, postId, true);
+        return;
+    }
+
+    // Check if the caller has liked a post
+    function returnLiked(uint postId) public view returns (bool) {
+        require(allPosts[postId].postIdx == postId, "Invalid post, it does not exist");
+        if (postLikes[postId][msg.sender].user != msg.sender) {
+            return false;
+        }
+        return postLikes[postId][msg.sender].liked;
+    }
+
+    // Delete a post
+    function deletePost(uint postId) public {
+        require(allPosts[postId].postIdx == postId, "Invalid post, it does not exist");
+        require(allPosts[postId].author == msg.sender, "Account unauthorized to delete post");
+        delete allPosts[postId];
+        emit DeletedPost(msg.sender, postId);
+    }
+
+    // Get all active posts
+    function returnPosts() public view returns (Post[] memory) {
+        uint activePostCount = 0;
+        for (uint i = 0; i < _postsCount.current(); i++) {
+            if (bytes(allPosts[i].post).length > 0) {
+                activePostCount++;
+            }
+        }
+        Post[] memory posts = new Post[](activePostCount);
+        uint postsIdx = 0;
+        for (uint i = 0; i < _postsCount.current(); i++) {
+            if (bytes(allPosts[i].post).length > 0) {
+                posts[postsIdx] = allPosts[i];
+                postsIdx++;
+            }
+        }
+        return posts;
+    }
+}
+
+
+##### 4.2.0.2 Creating The Smart Contract:
+
+- Like any other programming language Solidity utilize data-type and variables to create functionalities and store data. It further utilizes specifiers and modifiers to create restrictions and keep functionalities within confines. More details on the features we will be utilizing are seen below. [Read the Docs](https://docs.soliditylang.org/en/v0.8.20/) if you need more on solidity programming.
+
+- Data Types:
     - Uint: unsigned integer of 256 bits (could also come in bits of different sizes) 
     - Strings: String literals e.g("foo" or 'bar') 
     - Arrays: Arrays can be of a fixed size, or they can be dynamically sized.
     - Mappings: Mappings are like dicts in Python, but in solidity a hash-table virtually initialized where every possible key exists and is mapped to a value.
-    - Structs: Structs are custom-defined types that can group several variables.
+    - Structs: are custom-defined types that can group several variables.
     - Address: Holds a 20-byte value (size of an Ethereum address) e.g. a wallet address or contract address.
     - Bool: basically a Boolean.
 
-- Variables
-    - State variables: variables stored on the blockchain and will cost gas.
-    - Local variables: variables stored temporarily in memory and not saved.
+- Variables:
+    - State variables: stored on the blockchain and will cost gas.
+    - Local variables: stored temporarily in memory and not saved.
     - Global variables: exist in the global namespace, example of a global variable we will be utilizing is `msg` which includes `msg.sender` and `msg.value`.
 
-- Visibility Specifiers
+- Visibility Specifiers:
     - Public: visible externally and internally (use while creating a getter function for storage/state variables)
     - Private: only visible within the current contract. 
 
-- Modifiers
+- Modifiers:
     - View for functions: added to disallow modification of states. utilized in a getter function.
     - Payable for functions: Applied to functions that involves sending tokens allowing the token to be received together with a call.
     - onlyowner for functions: Applied to functions, to be called only by the owner of the contract.
@@ -301,7 +535,7 @@ brownie init
 
 ```sol
 
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
 
 ```
@@ -342,9 +576,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```sol
 
     using Counters for Counters.Counter;
-    using Counters for Counters.Counter;
-    using Counters for Counters.Counter;
-    using Counters for Counters.Counter; 
     Counters.Counter private _DonorsCount;
     Counters.Counter private _PostsCount;
     Counters.Counter private _ActPstCount; 
@@ -539,7 +770,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 ```sol
 
-    function _donationtBalance() public onlyOwner view returns( uint ){
+    function _donationBalance() public onlyOwner view returns( uint ){
         return _DonationBalance;
     }  
 
@@ -720,7 +951,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol#L260).
 
 
-#### 4.2.1 The CrowdFund Smart Contract.
+#### 4.2.1 The CrowdFund Smart Contract:
 
 - This is what your entire Crowdfund.sol contract should look like. 
 
@@ -785,14 +1016,12 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
          _tokenIdCounter.increment();
     }
 
-
     event TokenMinted( address sender, uint tokenId );
     event DonationMade( address sender, uint amount );
     event DonationTransfered( address sender, uint amount ); 
     event NewPostAdded( address sender, string slug );
     event LikedPost( address sender, uint postId, bool liked );
     event DeletedPost( address sender, uint postId );
-
 
     // CROWDFUND SECTION
     function safeMint(string memory uri) public {
@@ -803,7 +1032,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, uri);
         emit TokenMinted(msg.sender, tokenId); 
     }
-
 
     // checked updated this....
     function Donate() public payable {
@@ -829,7 +1057,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         return;
     }
 
-
     function TransferDonations(address payable adr) public payable onlyOwner {
         require(msg.sender != adr, "Transfer To Own Account Is Not Valid");
         require(msg.value < _DonationBalance, "Withdrawal Limits Excceded");
@@ -837,7 +1064,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _DonationBalance -= msg.value;
         emit DonationTransfered(msg.sender, msg.value);
     }
-
 
     function DonorAdr() public view onlyOwner returns (address[] memory)
     {
@@ -847,7 +1073,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         }
         return Adrs;
     }    
-
 
     function _donationtBalance() public onlyOwner view returns( uint ){
         return _DonationBalance;
@@ -863,7 +1088,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         return tokenIds;
     }
 
-
     // BLOG SECTION
     function NewPost(string memory post, string memory slug) public {
         require(bytes(post).length > 0, "Invalid Post");
@@ -876,7 +1100,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _ActPstCount.increment();
         emit NewPostAdded(msg.sender, slug);      
     }
-
 
     function LikeandUnlikePost(uint postId) public {
         require(AllPosts[postId].postIdx == postId, "Invalid... Post Does Not Exist");
@@ -974,7 +1197,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/contracts/Crowdfund.sol).
 
-#### 4.2.2 Deploying The Smart Contract.
+#### 4.2.2 Deploying The Smart Contract:
 
 - To interact or make use of our contract either locally or on the testnet our contract needs to be compiled and then deployed for that purpose we will be creating a deploy script to deploy our contract, a config file for deployment configurations, and a .env file for our keys. In the ./scripts the default directory for scripts create a deploy.py file to populate with our deploy script and create a brownie-config.yaml file in the root directory (brownie-config.yaml is default naming convention for a brownie config file) for our deployment configuration, and a .env file we will use in populating our keys
 
@@ -1058,7 +1281,6 @@ def main():
             json.dump(adr, outfile, indent=4)              
         return deployed
 
-
     if network.show_active()=='development':
         adr = {}       
         owner = accounts[0]
@@ -1071,7 +1293,8 @@ def main():
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/scripts/deploy.py).
 
-##### 4.2.2.1 Next we deploy and test the contract on the Ganache local network. 
+##### 4.2.2.1 Next we deploy and test the contract on the Ganache local network:
+
 - Open a new terminal for the ganache network and issue this command
 
 ```bash
@@ -1179,7 +1402,6 @@ def test_nftfunds_Donate_functions(Funds):
     assert Funds.ownerOf(1) == accounts[1]
     assert Funds.ownerOf(2) == accounts[2]
 
-
 def test_nftfunds_Blog_functions(Funds, accounts):
     """
     Test Blogs Post And Like Functions.
@@ -1213,7 +1435,6 @@ def test_nftfunds_Blog_functions(Funds, accounts):
 ```
 [Link to code block](https://github.com/lukrycyfa/crowdfund-tutorial-project/blob/main/tests/test_OnGanache.py).
 
-
 - Let’s run the test on ganache You should expect two passes at the end of the test. 
 
 ```bash
@@ -1221,7 +1442,7 @@ brownie test tests/test_OnGanache.py
 ```
 ![test-local](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-local.png)
 
-##### 4.2.2.2 Next Deploy and test the contract on The Alfajores testnet.
+##### 4.2.2.2 Next Deploy and test the contract on The Alfajores testnet:
 
 ```bash
 brownie run deploy.py --network alfajores
@@ -1316,7 +1537,6 @@ def test_nftfunds_Donate_functions(Funds):
     assert Funds.ownerOf(1) == metamaskAccounts[1]
     assert Funds.ownerOf(2) == metamaskAccounts[2]
 
-
 def test_nftfunds_Blog_functions(Funds):
     """
     Test Blogs Post And Like Functions.
@@ -1360,7 +1580,7 @@ brownie test tests/test_OnAlfajores.py --network alfajores
 ![test-alfajores](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/test-alfajores.png)
 
 
-### 4.3 Generating Unique Images Using An Art Engine.
+### 4.3 Generating Unique Images Using An Art Engine:
 
 - This part of the tutorial involves generating unique images that will be assigned to awarded tokens for our donor. These images are to represent an identifier or an appreciation for donations or a reference for participation in the crowdfund Project. A complete Dapp to this project built with React.Js could quickly express that idea.[link to Dapp here](https://crowdfund-dapp-seven.vercel.app/) to get a complete idea of the project.
 
@@ -1472,10 +1692,9 @@ brownie run --network alfajores useFundsAlfajores.py returnPosts_Pst
 ```bash
 brownie run --network alfajores useFundsAlfajores.py like_unlikePst
 ```
-#### 4.3.1 Alfajores Interactive Script Demo. 
+#### 4.3.1 Alfajores Interactive Script Demo:
 
 https://github.com/lukrycyfa/crowdfund-tutorial-main/assets/64338703/4a5cbf95-f724-4b56-b9a1-af874abd32be
-
 
 - For donations and minting on ganache
 ```bash
@@ -1489,18 +1708,18 @@ brownie run  useFundsLocal.py returnPosts_Pst
 ```bash
 brownie run  useFundsLocal.py like_unlikePst
 ```
-#### 4.3.2 Ganache Interactive Script Demo.
-
+#### 4.3.2 Ganache Interactive Script Demo:
 
 https://github.com/lukrycyfa/crowdfund-tutorial-main/assets/64338703/3b2db0b7-3fbb-47d9-8b9e-e91954ab2514
 
-
 - 🥳 !and here we have it you could now develop, test and deploy a smart contract on alfajores using eth-brownie. 
 
-## 5.0 FAQ.
+## 5.0 FAQ:
+
 - Ipfs: The InterPlanetary File System (IPFS) is a protocol, hypermedia, and file-sharing peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting IPFS hosts. IPFS can among others replace the location-based hypermedia server protocols HTTP and HTTPS to distribute the World Wide Web. [wikipedia](https://en.wikipedia.org/wiki/InterPlanetary_File_System).
 
 - Nft Erc721 token standard: A Non-Fungible Token (NFT) is used to identify something or someone in a unique way. This type of Token is perfect to be used on platforms that offer collectible items, access keys, lottery tickets, numbered seats for concerts and sports matches, etc. This special type of Token has amazing possibilities so it deserves a proper Standard, the ERC-721 came to solve that.
 
-## 6.0 Conclusion.
-- From this tutorial, we have gained a reasonable amount of experience using Celo alfajores testnet and Eth-brownie to develop, test, and deploy a crowdfund smart contract with extra features and got to generate unique images to associate with tokens using a generative art engine written in python and gained other valuable insights about Smart contracts and other Technologies. After completing this tutorial you should be encouraged to create your own unique smart contracts or improve on the existing contract and explore more on Celo Blockchain Technologies and Eth-brownie. Congrats on completing this tutorial 🥳.
+## 6.0 Conclusion:
+
+Therefore, from this tutorial, we have gained a reasonable amount of experience using Celo alfajores testnet and Eth-brownie to develop, test and deploy a CrowdFund Smart Contract with extra features and got to generate unique images to associate with tokens using a generative art engine written in python and gained other valuable insights about Smart contracts and other Technologies. After completing this tutorial you should be encouraged to create your own unique smart contracts or improve on the existing contract and explore more on Celo Blockchain Technologies and Eth-brownie. Congrats on completing this tutorial 🥳.
