@@ -24,6 +24,7 @@
        - [4.1.4 Installing the Contract Dependencies](#414-installing-the-contract-dependencies)
        - [4.1.5 Adding Alfajores Testnet to Brownie](#415-adding-alfajores-testnet-to-brownie)
    - [4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract](#42-developing-deploying-and-testing-our-crowdfund-smart-contract)
+       - [Entire code](#entire-code)
        - [4.2.0 Developing the Smart Contract](#420-developing-the-smart-contract)
             - [4.2.0.1 Initializing the Project](#4201-initializing-the-project)
             - [4.2.0.2 Creating The Smart Contract](#4202-creating-the-smart-contract)
@@ -266,7 +267,6 @@ brownie networks list
 ```
 ![network-list](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/network-list.png)
 
-
 ### 4.2 Developing, Deploying And Testing Our CrowdFund Smart Contract:
 
 - In this section, we will be Developing, deploying and testing our smart contract on ganache and celo testnet(alfajores). This section may require much attention as it's the core of this tutorial. We will get to understand more on Eth-Brownie, its scripts, tests, interacting with our deployed contract from the console and more. We would also take the liberty of looking into specifiers, modifiers, variables and some data-types we will be using while creating the smart contract as a recap of your understanding in Solidity Programming.
@@ -290,10 +290,213 @@ brownie init
 
 ![project-structure](https://github.com/lukrycyfa/crowdfund-tutorial-main/blob/main/Media/project-structure.png)
 
+##### Entire code:
+
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.0 <0.9.0;
+
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/token/ERC721/ERC721.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/access/Ownable.sol";
+import "OpenZeppelin/openzeppelin-contracts@4.8.2/contracts/utils/Counters.sol";
+
+contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _donorsCount;
+    Counters.Counter private _postsCount;
+    Counters.Counter private _tokenIdCounter;
+
+    uint public _totalDonations;
+    uint private _donationBalance;
+
+    struct Donor {
+        uint donorsIdx;
+        address adr;
+        uint amount;
+        uint donCount;
+    }
+
+    struct Post {
+        uint postIdx;
+        address author;
+        string post;
+        string slug;
+        uint likeCount;
+    }
+
+    struct LikeAdrs {
+        address user;
+        bool liked;
+    }
+
+    // Mapping to track post likes by user
+    mapping(uint => mapping(address => LikeAdrs)) public postLikes;
+
+    // Mapping to store all posts
+    mapping(uint => Post) public allPosts;
+
+    // Mapping to store donor information
+    mapping(address => Donor) public allDonors;
+
+    // List of donor addresses
+    address[] public donorsAdrLst;
+
+    constructor() ERC721("FundRaiserNFTs", "FRN") {
+        _tokenIdCounter.increment();
+    }
+
+    // Events
+    event TokenMinted(address sender, uint tokenId);
+    event DonationMade(address sender, uint amount);
+    event DonationTransferred(address sender, uint amount);
+    event NewPostAdded(address sender, string slug);
+    event LikedPost(address sender, uint postId, bool liked);
+    event DeletedPost(address sender, uint postId);
+
+    // Mint a new token
+    function safeMint(string memory uri) public {
+        require(allDonors[msg.sender].donCount > balanceOf(msg.sender), "The connected account is not eligible to mint a token");
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        _safeMint(msg.sender, tokenId);
+        _setTokenURI(tokenId, uri);
+        emit TokenMinted(msg.sender, tokenId);
+    }
+
+    // Make a donation
+    function donate() public payable {
+        require(msg.sender != owner(), "Donations cannot be made by the contract owner");
+        require(msg.value >= (10**18) * 2, "Sent value below minimum donation");
+        payable(owner()).transfer(msg.value);
+        _totalDonations += msg.value;
+        _donationBalance += msg.value;
+        if (allDonors[msg.sender].adr == msg.sender) {
+            allDonors[msg.sender].amount += msg.value;
+            allDonors[msg.sender].donCount += 1;
+            emit DonationMade(msg.sender, msg.value);
+            return;
+        }
+        Donor storage D = allDonors[msg.sender];
+        D.donorsIdx = _donorsCount.current();
+        _donorsCount.increment();
+        D.adr = msg.sender;
+        D.amount = msg.value;
+        D.donCount += 1;
+        donorsAdrLst.push(msg.sender);
+        emit DonationMade(msg.sender, msg.value);
+        return;
+    }
+
+    // Transfer donations to a specific address
+    function transferDonations(address payable adr) public payable onlyOwner {
+        require(msg.sender != adr, "Transfer to own account is not valid");
+        require(msg.value < _donationBalance, "Withdrawal limit exceeded");
+        adr.transfer(msg.value);
+        _donationBalance -= msg.value;
+        emit DonationTransferred(msg.sender, msg.value);
+    }
+
+    // Get the list of donor addresses
+    function donorAdr() public view onlyOwner returns (address[] memory) {
+        address[] memory Adrs = new address[](donorsAdrLst.length);
+        for (uint256 i = 0; i < donorsAdrLst.length; i++) {
+            Adrs[i] = donorsAdrLst[i];
+        }
+        return Adrs;
+    }
+
+    // Get the current donation balance
+    function donationBalance() public onlyOwner view returns (uint) {
+        return _donationBalance;
+    }
+
+    // Get the tokens owned by the caller
+    function ownWallet() public view returns (uint256[] memory) {
+        uint256 ownerTokenCount = balanceOf(msg.sender);
+        uint256[] memory tokenIds = new uint256[](ownerTokenCount);
+        for (uint256 i = 0; i < ownerTokenCount; i++) {
+            tokenIds[i] = tokenOfOwnerByIndex(msg.sender, i);
+        }
+        return tokenIds;
+    }
+
+    // Add a new post
+    function newPost(string memory post, string memory slug) public {
+        require(bytes(post).length > 0, "Invalid post");
+        Post storage P = allPosts[_postsCount.current()];
+        P.postIdx = _postsCount.current();
+        P.author = msg.sender;
+        P.post = post;
+        P.slug = slug;
+        _postsCount.increment();
+        emit NewPostAdded(msg.sender, slug);
+    }
+
+    // Like or unlike a post
+    function likeAndUnlikePost(uint postId) public {
+        require(allPosts[postId].postIdx == postId, "Invalid post, it does not exist");
+        if (postLikes[postId][msg.sender].user == msg.sender) {
+            if (postLikes[postId][msg.sender].liked) {
+                postLikes[postId][msg.sender].liked = false;
+                allPosts[postId].likeCount -= 1;
+                emit LikedPost(msg.sender, postId, false);
+                return;
+            }
+            postLikes[postId][msg.sender].liked = true;
+            allPosts[postId].likeCount += 1;
+            emit LikedPost(msg.sender, postId, true);
+            return;
+        }
+        allPosts[postId].likeCount += 1;
+        LikeAdrs storage l = postLikes[postId][msg.sender];
+        l.user = msg.sender;
+        l.liked = true;
+        emit LikedPost(msg.sender, postId, true);
+        return;
+    }
+
+    // Check if the caller has liked a post
+    function returnLiked(uint postId) public view returns (bool) {
+        require(allPosts[postId].postIdx == postId, "Invalid post, it does not exist");
+        if (postLikes[postId][msg.sender].user != msg.sender) {
+            return false;
+        }
+        return postLikes[postId][msg.sender].liked;
+    }
+
+    // Delete a post
+    function deletePost(uint postId) public {
+        require(allPosts[postId].postIdx == postId, "Invalid post, it does not exist");
+        require(allPosts[postId].author == msg.sender, "Account unauthorized to delete post");
+        delete allPosts[postId];
+        emit DeletedPost(msg.sender, postId);
+    }
+
+    // Get all active posts
+    function returnPosts() public view returns (Post[] memory) {
+        uint activePostCount = 0;
+        for (uint i = 0; i < _postsCount.current(); i++) {
+            if (bytes(allPosts[i].post).length > 0) {
+                activePostCount++;
+            }
+        }
+        Post[] memory posts = new Post[](activePostCount);
+        uint postsIdx = 0;
+        for (uint i = 0; i < _postsCount.current(); i++) {
+            if (bytes(allPosts[i].post).length > 0) {
+                posts[postsIdx] = allPosts[i];
+                postsIdx++;
+            }
+        }
+        return posts;
+    }
+}
+
 
 ##### 4.2.0.2 Creating The Smart Contract:
 
-- like any other programming language Solidity utilize data-type and variables to create functionalities and store data. It further utilizes specifiers and modifiers to create restrictions and keep functionalities within confines. More details on the features we will be utilizing are seen below. [Read the Docs](https://docs.soliditylang.org/en/v0.8.20/) if you need more on solidity programming.
+- Like any other programming language Solidity utilize data-type and variables to create functionalities and store data. It further utilizes specifiers and modifiers to create restrictions and keep functionalities within confines. More details on the features we will be utilizing are seen below. [Read the Docs](https://docs.soliditylang.org/en/v0.8.20/) if you need more on solidity programming.
 
 - Data Types:
     - Uint: unsigned integer of 256 bits (could also come in bits of different sizes) 
@@ -332,7 +535,7 @@ brownie init
 
 ```sol
 
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
 
 ```
@@ -373,9 +576,6 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```sol
 
     using Counters for Counters.Counter;
-    using Counters for Counters.Counter;
-    using Counters for Counters.Counter;
-    using Counters for Counters.Counter; 
     Counters.Counter private _DonorsCount;
     Counters.Counter private _PostsCount;
     Counters.Counter private _ActPstCount; 
@@ -570,7 +770,7 @@ contract FundRaiser is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
 ```sol
 
-    function _donationtBalance() public onlyOwner view returns( uint ){
+    function _donationBalance() public onlyOwner view returns( uint ){
         return _DonationBalance;
     }  
 
